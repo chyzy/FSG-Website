@@ -17,10 +17,20 @@ budowania: to, co leży w korzeniu repozytorium, jest serwowane 1:1.
 
 ## Jak to jest publikowane
 
-Push do `main` uruchamia [.github/workflows/pages.yml](.github/workflows/pages.yml)
-(oficjalny wzorzec `actions/deploy-pages`), który wysyła całą zawartość repo na
-GitHub Pages. Jednorazowo po pierwszym pushu:
-**Settings → Pages → Source: „GitHub Actions"**.
+**Push na `main` = publikacja.** GitHub Pages serwuje zawartość gałęzi wprost
+(Settings → Pages → Source: **Deploy from a branch**, `main` / `/ (root)`),
+bez workflow i bez kroku budowania.
+
+Dlatego `.nojekyll` jest tu **niezbędny**, a nie ozdobny: w tym trybie Pages
+przepuszczają treść przez Jekyll, który pomija pliki i katalogi zaczynające się
+od podkreślenia.
+
+Wersja przez GitHub Actions (`actions/deploy-pages`) istniała do commita
+`c895b8f` i jest w historii gita — warto do niej wrócić, gdy pojawi się krok
+budowania: podstawianie adresu wydania mostu z GitHub Releases, sprawdzarka
+martwych odnośników (strona setup jest linkowana z binarki aplikacji!) albo
+optymalizacja obrazków. Migracja to dodanie pliku workflow i zmiana źródła
+w Settings.
 
 Adres do czasu podpięcia domeny: `https://chyzy.github.io/FSG-Website/`.
 
