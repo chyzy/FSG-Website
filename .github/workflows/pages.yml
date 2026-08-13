@@ -1,0 +1,46 @@
+# Publikacja statycznej strony na GitHub Pages — oficjalny wzorzec GitHuba
+# (actions/upload-pages-artifact + actions/deploy-pages), bez kroku budowania:
+# artefaktem jest cała zawartość repozytorium.
+#
+# Wymaga jednorazowo: Settings -> Pages -> Source: "GitHub Actions".
+
+name: pages
+
+on:
+  push:
+    branches: [main]
+  # Ręczne wywołanie z zakładki Actions — przydatne po zmianie ustawień Pages.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write      # wdrożenie na Pages
+  id-token: write   # weryfikacja pochodzenia wdrożenia (OIDC)
+
+# Jedno wdrożenie naraz; trwającego NIE przerywamy, żeby nie zostawić
+# opublikowanej strony w połowie podmiany.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Konfiguracja Pages
+        uses: actions/configure-pages@v5
+
+      - name: Artefakt (całe repo)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Wdrożenie
+        id: deployment
+        uses: actions/deploy-pages@v4

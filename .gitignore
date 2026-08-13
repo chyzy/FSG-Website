@@ -1,0 +1,12 @@
+# System
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Edytory
+.vs/
+.vscode/
+.idea/
+
+# Claude Code (pliki lokalne sesji)
+.claude/
