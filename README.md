@@ -1,46 +1,78 @@
-# FSG-Website — strona Flight Sim Geeks
+# FSG-Website — strona FlightSimGeeks (flightsimgeeks.com)
 
 Statyczna strona HTML publikowana przez GitHub Pages. Bez generatora i bez kroku
 budowania: to, co leży w korzeniu repozytorium, jest serwowane 1:1.
+
+## Struktura
+
+| Ścieżka | Co to |
+|---------|-------|
+| `index.html` | strona główna: hero, liczby z pomiarów, jak działa, features, samoloty, produkty PFD/MFD, FAQ |
+| `fsg-bridge/setup/index.html` | instrukcja konfiguracji — **adres zaszyty w binarce aplikacji** (`BRIDGE_SETUP_URL` w `client/src/config/product.ts` repo FSG-G1000). Ścieżka `/fsg-bridge/setup` musi działać na lata. |
+| `assets/site.css` | jedyny arkusz; paleta wzięta z aplikacji (bursztyn `#e0c88f`, tło `#0b0d10`, magenta MFD `#f531e0`) |
+| `assets/img/icon-*.svg` | ikony aplikacji przekonwertowane 1:1 z Android vector drawables (`client/android/app/src/*/res/drawable/`) — poprawka tam = poprawka tu |
+| `assets/img/app-*.webp` | zrzuty **żywej** aplikacji (patrz niżej: jak odnowić) |
+| `assets/img/og-image.jpg` | kadr 1200×630 do kart linków (Discord/fora) |
+| `404.html` | style inline — Pages serwuje go spod dowolnej ścieżki, więc nie może zależeć od ścieżek relatywnych |
 
 ## Jak to jest publikowane
 
 Push do `main` uruchamia [.github/workflows/pages.yml](.github/workflows/pages.yml)
 (oficjalny wzorzec `actions/deploy-pages`), który wysyła całą zawartość repo na
-GitHub Pages. Stan wdrożenia widać w zakładce Actions.
-
-Jednorazowa konfiguracja po pierwszym pushu:
-**Settings → Pages → Build and deployment → Source: „GitHub Actions"** — bez tego
-workflow kończy się błędem o niewłączonych Pages.
+GitHub Pages. Jednorazowo po pierwszym pushu:
+**Settings → Pages → Source: „GitHub Actions"**.
 
 Adres do czasu podpięcia domeny: `https://chyzy.github.io/FSG-Website/`.
 
-## Zasady pisania strony (zanim powstanie)
+## Zasady
 
-- **Odnośniki i zasoby wyłącznie relatywne** (`./style.css`, nie `/style.css`) —
-  strona żyje pod podścieżką `/FSG-Website/`, absolutne ścieżki się wywrócą.
-  Po podpięciu domeny relatywne dalej działają, więc nic nie trzeba zmieniać.
-- `index.html` i `404.html` to **placeholdery** do weryfikacji potoku publikacji.
-  Mają `<meta name="robots" content="noindex">`, żeby wersja robocza nie weszła
-  do indeksu wyszukiwarek — **usunąć ten meta przy publikacji właściwej strony**.
-- `404.html` w korzeniu to konwencja Pages — serwowany przy nieistniejących adresach.
-- `.nojekyll` wyłącza przetwarzanie Jekyll. Przy publikacji przez Actions jest bez
-  znaczenia, ale gdyby ktoś przestawił źródło na „Deploy from a branch", chroni
-  pliki i katalogi zaczynające się od `_`.
+- **Odnośniki i zasoby wyłącznie relatywne** (`./`, `../`) — strona żyje pod
+  podścieżką `/FSG-Website/` do czasu domeny. Wyjątek: `og:url`, `og:image`
+  i `canonical` w `<head>` muszą być absolutne.
+- **Terminologia = terminologia UI aplikacji**: „FSG SimBridge" (program),
+  `fsg-simbridge` (proces), „FSG-Bridge package" w „Community folder" (moduł),
+  „FSG G1000 PFD"/„FSG G1000 MFD" (aplikacje), zawsze pełne „Microsoft Flight
+  Simulator 2024".
+- **Tylko zmierzone liczby.** Źródła: README i docs/ repo FSG-G1000. Strona
+  przeszła rewizję fakt-po-fakcie 2026-08-13; nie dopisywać obietnic bez pomiaru.
+
+## Zrzuty aplikacji — jak odnowić
+
+Zrzuty pochodzą z żywej aplikacji podłączonej do sima (C172, MSFS 2024):
+
+1. uruchom most w trybie dev z obydwoma panelami:
+   `dotnet run --project server/src/fsg-simbridge -- --Popout:Panels:mfd:Enabled=true`
+   (w repo FSG-G1000; klient zbudowany: `cd client && npm run build && npm run build:mfd`),
+2. wczytaj lot w simie i poczekaj, aż popouty wstaną (`/api/status`),
+3. zrzuty przez playwright-core + systemowy Edge (viewport 1280×800, deviceScaleFactor 2)
+   z `http://localhost:5100/pfd/` i `/mfd/`, potem konwersja canvas→WebP q0.85.
+   Skrypty siedzą w historii sesji Claude; odtworzenie: `shot.js` + `convert.js`.
+
+## Checklista przed publicznym startem
+
+- [ ] usunąć `<meta name="robots" content="noindex">` z **obu** stron,
+- [ ] podmienić przycisk „Download FSG SimBridge" na prawdziwy adres wydania
+      (span → `<a>`; szukaj `TODO` w `fsg-bridge/setup/index.html`),
+- [ ] zweryfikować opis kroku 01 na finalnym instalatorze (zapora, pakiet
+      Community, „nothing to configure"),
+- [ ] linki Google Play są wpisane pod finalne `applicationId` — sprawdzić po
+      publikacji, odblokować odznaki App Store gdy wyjdzie iOS,
+- [ ] przy podpięciu domeny: podmienić `og:url`/`og:image`/`canonical`
+      (absolutne URL-e) i href w `404.html`,
+- [ ] ujednolicić tekst UI `StartupPanel.tsx` (porada o module — dziś
+      deweloperska) z sekcją troubleshooting strony.
 
 ## Podgląd lokalny
 
-Do prostych zmian wystarczy otworzyć `index.html` w przeglądarce. Gdy potrzebny
-prawdziwy serwer (ścieżki, strona 404):
-
 ```bash
-npx serve .
+npx serve . -l 5173
 ```
+
+(Otwarcie `index.html` z dysku też działa do prostych zmian.)
 
 ## Domena własna (później)
 
-Settings → Pages → Custom domain (np. `flightsimgeeks.com`) + rekordy DNS
-u rejestratora (A na adresy GitHub Pages albo CNAME `www` → `chyzy.github.io`),
-na końcu „Enforce HTTPS". Przy publikacji przez Actions plik `CNAME` w repo nie
-jest potrzebny — domenę pamięta konfiguracja Pages. Po podpięciu domeny strona
-schodzi z podścieżki na korzeń, ale relatywne odnośniki działają w obu układach.
+Settings → Pages → Custom domain (`flightsimgeeks.com`) + rekordy DNS
+u rejestratora, na końcu „Enforce HTTPS". Przy publikacji przez Actions plik
+`CNAME` w repo nie jest potrzebny — domenę pamięta konfiguracja Pages.
+Relatywne odnośniki działają w obu układach bez zmian.

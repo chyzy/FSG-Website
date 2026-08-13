@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-label="FSG G1000 PFD app icon">
+  <!-- Konwersja 1:1 z client/android/app/src/pfd/res/drawable/ic_fsg_splash.xml (repo FSG-G1000).
+       Poprawka koloru = poprawka tam i tutaj. -->
+  <defs>
+    <linearGradient id="pfd-sky" x1="0" y1="0" x2="0" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B3ED6"/>
+      <stop offset="1" stop-color="#0A1F86"/>
+    </linearGradient>
+    <linearGradient id="pfd-ground" x1="0" y1="54" x2="0" y2="132" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4A8A2E"/>
+      <stop offset="1" stop-color="#27541A"/>
+    </linearGradient>
+    <clipPath id="pfd-clip">
+      <path d="M4,54 a50,50 0 1,0 100,0 a50,50 0 1,0 -100,0 z"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#pfd-clip)">
+    <path d="M0,0 h108 v108 h-108 z" fill="url(#pfd-sky)"/>
+    <g transform="rotate(-16 54 54)">
+      <path d="M-70,54 h248 v150 h-248 z" fill="url(#pfd-ground)"/>
+      <path d="M-70,52.9 h248 v2.2 h-248 z" fill="#FFFFFF"/>
+      <path d="M45,42.1 h18 v1.9 h-18 z" fill="#FFFFFF"/>
+      <path d="M45,64 h18 v1.9 h-18 z" fill="#FFFFFF"/>
+      <path d="M54,30 L58,36.4 H50 Z" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <path d="M28.02,39 A30,30 0 0 1 79.98,39" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+
+  <g transform="rotate(-30 54 54)"><path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/></g>
+  <path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/>
+  <g transform="rotate(30 54 54)"><path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/></g>
+
+  <path d="M19.5,49.6 H30 L33,54 L30,58.4 H19.5 Z" fill="#FFC61A" stroke="#0B0D10" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M88.5,49.6 H78 L75,54 L78,58.4 H88.5 Z" fill="#FFC61A" stroke="#0B0D10" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M54,48.4 L62,59.6 H46 Z" fill="#FFC61A" stroke="#0B0D10" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

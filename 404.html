@@ -1,13 +1,51 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — FlightSimGeeks</title>
   <meta name="robots" content="noindex">
-  <title>404 — Flight Sim Geeks</title>
+  <meta name="theme-color" content="#0b0d10">
+  <!-- GitHub Pages serwuje ten plik spod KAŻDEJ nieistniejącej ścieżki, więc zasoby
+       muszą być absolutne względem korzenia serwisu. Na project pages korzeń to
+       /FSG-Website/, po podpięciu domeny — /. Stąd inline style i brak obrazków:
+       ta strona nie może zależeć od ścieżek. -->
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #0b0d10;
+      color: #f2f3f5;
+      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      text-align: center;
+    }
+    .num {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: #e0c88f;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    p { color: #c3c6ce; margin: 12px 0 24px; }
+    a {
+      color: #6ec1ff;
+      text-decoration: none;
+      border: 1px solid #343945;
+      border-radius: 999px;
+      padding: 10px 22px;
+    }
+    a:hover { border-color: #e0c88f; }
+  </style>
 </head>
 <body>
-  <h1>404</h1>
-  <p>Nie ma takiej strony. <a href="./">Strona główna</a>.</p>
+  <main>
+    <h1 class="num">404</h1>
+    <p>This page flew off the map.</p>
+    <a href="/FSG-Website/">Back to the home page</a>
+    <!-- TODO po podpięciu flightsimgeeks.com: zmienić href na "/" -->
+  </main>
 </body>
 </html>

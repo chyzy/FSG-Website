@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Set up FSG SimBridge — setup guide | FlightSimGeeks</title>
+  <meta name="description" content="Set up FSG SimBridge on your PC, connect the FSG G1000 app on your tablet and make your first flight — a step-by-step guide, about two minutes.">
+  <!-- noindex do usunięcia przy publicznym starcie. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0d10">
+  <meta property="og:title" content="Set up FSG SimBridge — setup guide">
+  <meta property="og:description" content="Set up FSG SimBridge on your PC, connect the FSG G1000 app on your tablet and make your first flight — about two minutes.">
+  <meta property="og:type" content="website">
+  <!-- og/canonical wymagają adresów absolutnych — podmienić razem z domeną i noindex. -->
+  <meta property="og:url" content="https://chyzy.github.io/FSG-Website/fsg-bridge/setup/">
+  <meta property="og:image" content="https://chyzy.github.io/FSG-Website/assets/img/og-image.jpg">
+  <link rel="canonical" href="https://chyzy.github.io/FSG-Website/fsg-bridge/setup/">
+  <link rel="icon" type="image/svg+xml" href="../../assets/img/icon-pfd.svg">
+  <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="../../">
+      <img src="../../assets/img/icon-pfd.svg" alt="" width="28" height="28">
+      FlightSimGeeks
+    </a>
+    <nav class="nav-links">
+      <a href="#connect">Connecting</a>
+      <a href="#first-flight">First flight</a>
+      <a href="#network">Network</a>
+      <a class="nav-cta" href="#troubleshooting">Troubleshooting</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container guide">
+      <p class="kicker">Setup guide</p>
+      <h1>Up and flying in four steps.</h1>
+      <p class="lead">
+        The app on your tablet sent you here — good. This page takes you from nothing to a
+        live G1000 in about two minutes, and you only ever do it once.
+      </p>
+
+      <p class="fineprint">What you need before we start:</p>
+      <ul class="checklist">
+        <li><span class="dot"></span><span>A Windows 10/11 PC running <b>Microsoft Flight Simulator 2024</b></span></li>
+        <li><span class="dot"></span><span>An Android tablet or phone with the <b>FSG G1000 PFD</b> or <b>MFD</b> app</span></li>
+        <li><span class="dot"></span><span>Both on the <b>same network</b> — ideally the PC on a cable</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-0">
+    <div class="container guide">
+
+      <!-- ── Krok 1 ─────────────────────────────────────────────────── -->
+      <div class="guide-step" id="bridge">
+        <h2><span class="no">01</span>Install FSG SimBridge on your PC</h2>
+        <p>
+          FSG SimBridge is the companion program that connects the simulator to your tablet:
+          it brings the G1000 to your apps and feeds your button presses back into the sim.
+          Download it on the PC that runs the simulator and run the installer — there is
+          nothing to configure.
+        </p>
+        <p>
+          <!-- TODO przed startem: podmienić na <a class="btn btn-primary" href="…"> z docelowym
+               adresem pobierania (GitHub Releases / CDN). Opis kroku zakłada FINALNY instalator
+               (Velopack + hook Community) — zweryfikować te zdania na gotowej paczce. -->
+          <span class="btn btn-primary is-soon">Download FSG SimBridge</span>
+        </p>
+        <div class="callout warn">
+          <b>When Windows asks about network access — allow it.</b> The firewall prompt appears
+          the first time the bridge runs. Without that permission your tablet will never find
+          the PC.
+        </div>
+        <p>
+          The installer also places the <b>FSG-Bridge package</b> into the simulator's
+          <b>Community folder</b>. That package is what lets the app drive the avionics knobs
+          (FMS, map range, NAV/COM tuning, volumes). The simulator loads packages at startup —
+          so if MSFS was running during the install, <b>restart it once</b>.
+        </p>
+      </div>
+
+      <!-- ── Krok 2 ─────────────────────────────────────────────────── -->
+      <div class="guide-step" id="app">
+        <h2><span class="no">02</span>Install the app on your tablet</h2>
+        <p>
+          Get <b>FSG G1000 PFD</b> — or <b>FSG G1000 MFD</b> if it is the map you are after —
+          from Google Play. They are separate apps: buy only the display your panel needs, or
+          run both on two devices from the same bridge.
+        </p>
+        <div class="badges">
+          <!-- TODO przed startem: linki po publikacji w Play. -->
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.flightsimgeeks.g1000">
+            <img src="../../assets/img/icon-pfd.svg" alt="" width="24" height="24">
+            <span><span class="small">Google Play</span><span class="big">FSG G1000 PFD</span></span>
+          </a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.flightsimgeeks.g1000mfd">
+            <img src="../../assets/img/icon-mfd.svg" alt="" width="24" height="24">
+            <span><span class="small">Google Play</span><span class="big">FSG G1000 MFD</span></span>
+          </a>
+        </div>
+        <p class="fineprint">iOS versions are planned but not available yet.</p>
+      </div>
+
+      <!-- ── Krok 3 ─────────────────────────────────────────────────── -->
+      <div class="guide-step" id="connect">
+        <h2><span class="no">03</span>Connect the app to your PC</h2>
+        <p>
+          Open the app. It searches your network on its own and shows your PC by name the
+          moment the bridge is running — usually within seconds. <b>Tap your PC to connect.</b>
+          The choice is remembered; from now on the app connects by itself.
+        </p>
+        <p>
+          Nothing showing up? The app rescans every ten seconds or so — give it a moment
+          first. If your PC and tablet sit on different networks (or your router isolates
+          Wi-Fi devices), tap
+          <b>“Enter the address manually”</b> and type the PC's local IP address, for example
+          <code>192.168.0.17</code>. You can read that address on the PC: press
+          <kbd>Win</kbd>+<kbd>R</kbd>, run <code>cmd</code>, type <code>ipconfig</code> and
+          look for “IPv4 Address”.
+        </p>
+      </div>
+
+      <!-- ── Krok 4 ─────────────────────────────────────────────────── -->
+      <div class="guide-step" id="first-flight">
+        <h2><span class="no">04</span>First flight — show it where the PFD is</h2>
+        <p>
+          Start Microsoft Flight Simulator 2024 and load a flight in a G1000 aircraft — the
+          Cessna 172 is perfect. The app shows a live checklist of what it is waiting for
+          (bridge, simulator, aircraft, the FSG-Bridge package), so you always know whether
+          it is your turn or not.
+        </p>
+        <p>
+          The first time you fly a given aircraft, the app asks you to
+          <b>show it where the PFD is</b>:
+        </p>
+        <ol>
+          <li>Switch to the PC — the simulator window should be in the foreground.</li>
+          <li>In the cockpit, hold <kbd>right&nbsp;Alt</kbd> and <b>left-click the centre of the
+              PFD screen</b> (the screen itself, not the buttons around it).</li>
+          <li>If nothing pops out, click once more — the simulator often ignores the first
+              click. The panel window appears about a second later.</li>
+        </ol>
+        <p>
+          That's it. The bridge remembers the spot for this aircraft, hides the popped-out
+          window off your desktop (no taskbar clutter — that's normal), and the G1000 lights
+          up on your tablet. From now on the whole dance is automatic: load a flight, and the
+          panel appears on the tablet by itself, usually within a dozen seconds or so. Each
+          new aircraft type asks for its own right&nbsp;Alt&nbsp;+&nbsp;click.
+        </p>
+        <div class="callout">
+          <b>Where did the window go?</b> Hidden off-screen on purpose, while the G1000
+          lives on your tablet — your PC desktop stays clean.
+        </div>
+        <div class="callout">
+          <b>One habit worth keeping:</b> the remembered spot is tied to your cockpit camera
+          view. If you later change the default cockpit view (or the panel stops popping out
+          where expected), the app simply asks for one more right&nbsp;Alt&nbsp;+&nbsp;click —
+          nothing to reset, nothing to delete. Changing screen resolution or window size is
+          fine and does not affect it.
+        </div>
+      </div>
+
+      <!-- ── Sieć ───────────────────────────────────────────────────── -->
+      <div class="guide-step" id="network">
+        <h2><span class="no">05</span>Make your network work for you</h2>
+        <p>
+          The G1000 picture is easy on your network, but Wi-Fi shares <i>airtime</i>,
+          not megabits — and the simulator itself downloads scenery over the same network
+          while you fly. If the picture ever freezes or turns soft, work down this list:
+        </p>
+        <ol>
+          <li><b>Plug the PC into Ethernet.</b> This is the real fix — it takes the
+              simulator's scenery downloads off the air entirely.</li>
+          <li><b>Keep the tablet on a different Wi-Fi band than the PC</b> (e.g. tablet on
+              5&nbsp;GHz, PC on 2.4&nbsp;GHz — or best, PC on cable and tablet anywhere).</li>
+          <li><b>Limit the simulator's bandwidth</b> in its data options and enable the
+              rolling cache.</li>
+        </ol>
+        <p>
+          When the link degrades anyway, the bridge is built to soften the picture rather
+          than let it fall behind — you will see a <b>“weak link”</b> notice in the app's
+          status bar, and what you see stays <i>current</i>, which is what matters on a
+          flight instrument. Fixing the network is still on you, though — start with
+          the cable.
+        </p>
+      </div>
+
+      <!-- ── Troubleshooting ────────────────────────────────────────── -->
+      <div class="guide-step" id="troubleshooting">
+        <h2><span class="no">06</span>Troubleshooting</h2>
+
+        <details>
+          <summary>The app can't find my PC</summary>
+          <div class="body">
+            <ul>
+              <li>Is the bridge actually running on the PC? Start it and watch the app —
+                  it rescans every few seconds and will pick it up by itself.</li>
+              <li>Are both devices on the same network? A guest Wi-Fi or a mobile hotspot on
+                  the tablet counts as a different network.</li>
+              <li>Did Windows Firewall get its permission? It asks only <b>once</b> — if the
+                  prompt was dismissed or denied, restarting the bridge will not bring it
+                  back. Open <b>Windows Security → Firewall &amp; network protection →
+                  Allow an app through firewall</b> and make sure <code>fsg-simbridge</code>
+                  is allowed on private networks.</li>
+              <li>Some routers isolate wireless clients from each other (“AP isolation”/“client
+                  isolation”). Either disable that, or use
+                  <b>“Enter the address manually”</b> with the PC's IP.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>The app says “Waiting for the simulator”</summary>
+          <div class="body">
+            <p>
+              The bridge is fine — it just cannot see MSFS. Start Microsoft Flight Simulator
+              2024 and load into a flight. The app connects on its own the moment the
+              simulator answers.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>“Aircraft with G1000 loaded” stays on waiting, or the app says “This aircraft has no G1000”</summary>
+          <div class="body">
+            <p>
+              The app works only with the Garmin G1000. Load an aircraft that flies the stock
+              G1000&nbsp;NXi — Cessna 172 G1000, Bonanza G36, DA62, DA42, DA40&nbsp;NG or the
+              Cirrus SR22T are all verified. In an airliner or a steam-gauge aircraft the app
+              tells you so and waits for a G1000 aircraft; that is by design.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>“FSG-Bridge package in Community folder” says “module not responding yet”</summary>
+          <div class="body">
+            <p>
+              The simulator loads packages only at startup. If the bridge was installed while
+              MSFS was running, restart the simulator once.
+            </p>
+            <p>
+              Still not responding? The package may have been removed from the Community
+              folder — repairing MSFS through the Xbox app is known to wipe Community without
+              asking. Re-run the FSG SimBridge installer; it puts the package back.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Everything works, except the FMS knob, map zoom or volumes</summary>
+          <div class="body">
+            <p>
+              The buttons travel one path, the avionics knobs another — the knobs need the
+              <b>FSG-Bridge package</b> in the simulator's Community folder. See the point
+              above: restart MSFS, and if that does not help, re-run the installer.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>The picture freezes or goes blurry in flight</summary>
+          <div class="body">
+            <p>
+              Classic Wi-Fi congestion — it typically starts right when the flight begins,
+              because that is when the simulator starts downloading scenery. Go through
+              <a href="#network">the network section</a>: PC on cable first. If a
+              “weak link” notice shows in the app, the bridge is already compensating; fix
+              the network and it recovers on its own.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>The panel window keeps appearing on my PC screen</summary>
+          <div class="body">
+            <p>
+              For a moment during creation — normal. The bridge needs the simulator in the
+              foreground to create the panel, briefly takes over the mouse to do it, then
+              hides the window again. If the window <i>stays</i> visible, restart the bridge —
+              it re-adopts the panel and tucks it away.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>The panel pops out in the wrong place, or a wrong window opens</summary>
+          <div class="body">
+            <p>
+              The remembered click spot no longer matches — usually after changing the cockpit
+              camera view. The app will ask you to show it the PFD again: one
+              right&nbsp;Alt&nbsp;+&nbsp;click on the centre of the PFD screen, and the new spot
+              replaces the old one.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>The MFD app says the bridge cannot serve it</summary>
+          <div class="body">
+            <p>
+              The FSG SimBridge on your PC is older than the app. Update it — one update
+              serves both displays — and the app reconnects on its own once it restarts.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="setup-teaser">
+        <div>
+          <h2 class="mt-0">Still stuck?</h2>
+          <p class="teaser-lead">
+            <!-- TODO przed startem: docelowy kanał wsparcia (e-mail / Discord). -->
+            Tell us what the app's checklist shows and which step you got stuck on — that is
+            usually enough to pinpoint the problem.
+          </p>
+        </div>
+        <a class="btn btn-ghost" href="../../#faq">Read the FAQ</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      © 2026 FlightSimGeeks ·
+      <a href="../../">flightsimgeeks.com</a>
+    </div>
+    <div class="footer-contact">
+      <span class="footer-label">Contact</span>
+      Badisoft Bartosz Chyży<br>
+      <a href="mailto:chyzybartosz@gmail.com">chyzybartosz@gmail.com</a><br>
+      NIP 7831873852
+    </div>
+    <div class="trademark">
+      Garmin and G1000 are trademarks of Garmin Ltd. Microsoft Flight Simulator is a trademark
+      of Microsoft Corporation. FlightSimGeeks is not affiliated with or endorsed by Garmin
+      or Microsoft.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

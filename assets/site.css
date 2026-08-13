@@ -1,0 +1,607 @@
+/* FlightSimGeeks — wspólny arkusz obu stron.
+   Świadomie jeden, ciemny motyw: produkt to nocny kokpit (czarny bezel G1000),
+   strona ma wyglądać jak jego przedłużenie. Zero zewnętrznych zależności —
+   fonty systemowe, wszystko w tym pliku. */
+
+:root {
+  /* Tła: dokładnie rodzina aplikacji — splash/bezel to #0B0D10 (fsg_colors.xml),
+     ekrany startowe grają odcieniami #07080a–#14161c. */
+  --bg: #0b0d10;
+  --bg-elev: #101319;
+  --bg-card: #14171e;
+  --border: #23262e;
+  --border-bright: #343945;
+
+  /* Tekst — wartości z ekranów startowych aplikacji (styles.css klienta). */
+  --text: #f2f3f5;
+  --text-dim: #c3c6ce;
+  --muted: #7d828e;
+
+  /* Akcenty żywcem z aplikacji: bursztyn #e0c88f (ekrany startowe, legendy bezela),
+     #FFC61A (znak PFD), magenta #F531E0 (znak MFD), błękit #6ec1ff (odnośniki),
+     zieleń #6ee38a (stan ready). */
+  --accent: #e0c88f;
+  --accent-strong: #ffc61a;
+  --link: #6ec1ff;
+  --link-strong: #9dd6ff;
+  --magenta: #f531e0;
+  --ok: #6ee38a;
+  --warn: #e0c88f;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  /* 1080 wyglądało biednie na monitorach 21:9 — strona ma oddychać na szerokich ekranach. */
+  --container: 1360px;
+
+  --font: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Kotwice nie mogą chować nagłówka pod przyklejonym paskiem nawigacji (62px). */
+[id] { scroll-margin-top: 78px; }
+
+/* Widoczny fokus dla klawiatury — domyślna obwódka UA ginie na tym tle. */
+:is(a, button, summary):focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Delikatna poświata u góry strony — jedyny "efekt", reszta to typografia. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 70% -10%, rgba(224, 200, 143, 0.06), transparent 65%),
+    radial-gradient(700px 380px at 15% -5%, rgba(27, 62, 214, 0.08), transparent 60%);
+  z-index: 0;
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-strong); text-decoration: underline; text-underline-offset: 3px; }
+
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.12em 0.42em;
+  white-space: nowrap;
+}
+
+kbd { border-bottom-width: 2px; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 48px);
+}
+
+/* ── Nawigacja ─────────────────────────────────────────────────────────── */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(10, 13, 17, 0.82);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 62px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  white-space: nowrap;
+}
+.brand:hover { text-decoration: none; color: var(--text); }
+.brand svg { display: block; }
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+  font-size: 15px;
+}
+.nav-links a { color: var(--text-dim); }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-links a.nav-cta {
+  color: var(--accent);
+  border: 1px solid var(--border-bright);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+.nav-links a.nav-cta:hover { border-color: var(--accent); }
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+
+/* Hero jest wyśrodkowany: urządzenia pod spodem są symetryczne, więc tekst
+   dosunięty do lewej robił nierównowagę na szerokich ekranach. */
+.hero { padding: 84px 0 40px; text-align: center; }
+
+.hero h1 {
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin: 0 auto 22px;
+}
+
+.hero h1 .grad {
+  background: linear-gradient(92deg, var(--accent) 10%, var(--magenta) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero .lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--text-dim);
+  /* Co najmniej szerokość akapitów sekcji (720px) — na dużych ekranach więcej. */
+  max-width: 72ch;
+  margin: 0 auto 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wizual pod hero: dwa urządzenia (PFD + MFD) obok siebie na szerokich ekranach,
+   jedno pod drugim na wąskich. Ma własny, dużo szerszy kontener niż reszta strony —
+   tablety mają robić wrażenie. */
+.container-hero {
+  max-width: 1880px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 3vw, 48px);
+}
+
+.hero-visual { margin: 56px 0 8px; }
+.hero-devices {
+  display: grid;
+  gap: clamp(18px, 2.5vw, 30px);
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  align-items: start;
+}
+@media (max-width: 520px) {
+  .hero-devices { grid-template-columns: 1fr; }
+}
+.hero-devices .device { max-width: none; }
+.device-label {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 14px 0 0;
+}
+.device-label.is-magenta { color: var(--magenta); }
+
+/* ── Przyciski i odznaki sklepów ───────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-sm);
+  padding: 12px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn:hover { text-decoration: none; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #241a05;
+}
+.btn-primary:hover { background: #ecd7a5; color: #241a05; }
+
+.btn-ghost {
+  border-color: var(--border-bright);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+
+/* Element jeszcze nieaktywny (np. pobieranie przed publikacją wydania). */
+.btn.is-soon { opacity: 0.7; pointer-events: none; }
+
+/* Odznaki sklepów: ciemne pigułki z glifem i dwiema liniami tekstu. */
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  background: #05070a;
+  border: 1px solid var(--border-bright);
+  border-radius: 12px;
+  padding: 9px 18px 9px 14px;
+  color: var(--text);
+  line-height: 1.15;
+}
+.store-badge:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+.store-badge svg { flex: none; }
+.store-badge .small { display: block; font-size: 11px; color: var(--text-dim); }
+.store-badge .big { display: block; font-size: 16.5px; font-weight: 650; letter-spacing: 0.01em; }
+.store-badge.is-soon { opacity: 0.7; pointer-events: none; filter: saturate(0.6); }
+
+.store-note { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+/* ── Sekcje ────────────────────────────────────────────────────────────── */
+
+section { padding: 64px 0; }
+
+.section-head { max-width: 720px; margin-bottom: 44px; }
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.section-head p { color: var(--text-dim); margin: 0; }
+
+/* ── Karty features ────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+/* Sześć kart features: na szerokim ekranie 3+3 zamiast 4+2. */
+@media (min-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.card:hover { border-color: var(--border-bright); }
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h3 svg { flex: none; color: var(--accent); }
+.card p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
+
+/* ── "Jak to działa" — trzy kroki ──────────────────────────────────────── */
+
+.steps {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  counter-reset: step;
+}
+
+.step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  counter-increment: step;
+}
+
+.step::before {
+  content: "0" counter(step);
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.step h3 { margin: 0 0 8px; font-size: 1.08rem; }
+.step p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
+
+/* ── Statystyki (liczby zmierzone) ─────────────────────────────────────── */
+
+.stats {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  text-align: center;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px 18px;
+  background: var(--bg-elev);
+}
+
+.stat .num {
+  font-family: var(--mono);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--accent-strong);
+  letter-spacing: -0.02em;
+}
+.stat .num sub, .stat .num small { font-size: 0.45em; color: var(--text-dim); font-weight: 500; }
+.stat .desc { color: var(--text-dim); font-size: 14.5px; margin-top: 6px; }
+
+/* ── Sekcja produktów (PFD / MFD) ──────────────────────────────────────── */
+
+.products {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.product {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product .tag {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-bright);
+  color: var(--accent);
+}
+.product .tag.tag-magenta { color: var(--magenta); }
+
+.product h3 { margin: 0; font-size: 1.35rem; letter-spacing: -0.015em; }
+.product p { margin: 0; color: var(--text-dim); font-size: 15.5px; flex-grow: 1; }
+.badges { display: flex; flex-wrap: wrap; gap: 10px; }
+.product img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #000; }
+.product .product-icon { width: 64px; height: 64px; border: 0; background: none; }
+
+/* ── Callouty ──────────────────────────────────────────────────────────── */
+
+/* Wzór .startup-fix z aplikacji: cienka ramka, lewa krawędź akcentem, tło ledwo podbite. */
+.callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--link);
+  background: var(--bg-elev);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-size: 15.5px;
+  color: var(--text-dim);
+  margin: 20px 0;
+}
+.callout.warn {
+  border-color: #3a3324;
+  border-left: 3px solid var(--accent);
+  background: rgba(224, 200, 143, 0.06);
+}
+.callout b, .callout strong { color: var(--text); }
+
+/* ── Strona setup: kroki-numerowane sekcje ─────────────────────────────── */
+
+/* Prosta proza instrukcji zostaje w szerokości czytelnej dla oka,
+   niezależnie od szerokości kontenera. */
+.guide { max-width: 820px; }
+
+.guide-step { padding: 34px 0; border-top: 1px solid var(--border); }
+.guide-step:first-of-type { border-top: 0; }
+
+.guide-step > h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 1.5rem;
+}
+
+.guide-step .no {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 1.1rem;
+  flex: none;
+}
+
+.guide-step p, .guide-step li { color: var(--text-dim); }
+.guide-step li { margin: 6px 0; }
+.guide-step b, .guide-step strong { color: var(--text); }
+.guide-step img { max-width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+
+/* Checklista jak w aplikacji (ekran "Required on your PC"). */
+.checklist { list-style: none; padding: 0; margin: 16px 0; }
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 8px 0;
+  background: var(--bg-elev);
+  font-size: 15.5px;
+}
+.checklist .dot {
+  flex: none;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 8px rgba(110, 227, 138, 0.55); /* poświata jak .startup-dot w aplikacji */
+}
+
+/* ── Akordeon (FAQ / troubleshooting) ──────────────────────────────────── */
+
+details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+summary {
+  cursor: pointer;
+  padding: 15px 20px;
+  font-weight: 600;
+  font-size: 15.5px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: "+";
+  font-family: var(--mono);
+  color: var(--accent);
+  flex: none;
+  width: 1em;
+}
+details[open] summary::before { content: "–"; }
+details .body { padding: 0 20px 18px 20px; color: var(--text-dim); font-size: 15px; }
+details .body > :first-child { margin-top: 0; }
+details .body > :last-child { margin-bottom: 0; }
+
+/* ── Stopka ────────────────────────────────────────────────────────────── */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 0 48px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.footer-inner { display: flex; flex-wrap: wrap; gap: 18px 40px; justify-content: space-between; }
+.footer-inner a { color: var(--text-dim); }
+
+/* ── Ramka urządzenia (zrzut z aplikacji w "tablecie") ─────────────────── */
+
+.device {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(10px, 1.8vw, 18px);
+  background: linear-gradient(180deg, #17171b, #0d0d0f 60%);
+  border: 1px solid #26262b;
+  border-radius: 22px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 90px rgba(0, 0, 0, 0.6);
+}
+.device img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #000;
+}
+
+.visual-caption {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13.5px;
+  margin-top: 14px;
+}
+
+.fineprint {
+  color: var(--muted);
+  font-size: 13.5px;
+  margin: 16px 0 0;
+}
+
+/* ── Nagłówek karty produktu ───────────────────────────────────────────── */
+
+.product-head { display: flex; align-items: center; gap: 16px; }
+.product-head h3 { margin: 0; }
+.product-icon { flex: none; border-radius: 16px; }
+
+/* ── Zajawka instrukcji ────────────────────────────────────────────────── */
+
+.setup-teaser {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(224, 200, 143, 0.07), transparent 70%),
+    var(--bg-card);
+  padding: 34px 36px;
+}
+.setup-teaser .teaser-lead { color: var(--text-dim); max-width: 52ch; margin: 0; }
+.setup-teaser .btn { flex: none; }
+
+/* ── Stopka: kontakt i znaki towarowe ──────────────────────────────────── */
+
+.footer-inner .trademark { max-width: 52ch; }
+
+.footer-contact { line-height: 1.7; }
+.footer-contact .footer-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+/* ── Drobiazgi ─────────────────────────────────────────────────────────── */
+
+.center { text-align: center; }
+.mt-0 { margin-top: 0; }
+
+@media (max-width: 640px) {
+  .hero { padding: 56px 0 28px; }
+  section { padding: 48px 0; }
+  .nav-links { gap: 14px; font-size: 14px; }
+  .nav-links a:not(.nav-cta):not(:last-child) { display: none; }
+}

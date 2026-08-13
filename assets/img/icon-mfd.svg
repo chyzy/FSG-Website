@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-label="FSG G1000 MFD app icon">
+  <!-- Konwersja 1:1 z client/android/app/src/mfd/res/drawable/ic_fsg_map_splash.xml (repo FSG-G1000).
+       Poprawka koloru = poprawka tam i tutaj. -->
+  <defs>
+    <linearGradient id="mfd-sea" x1="0" y1="0" x2="0" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B3ED6"/>
+      <stop offset="1" stop-color="#0A1F86"/>
+    </linearGradient>
+    <linearGradient id="mfd-land" x1="0" y1="0" x2="0" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4A8A2E"/>
+      <stop offset="1" stop-color="#27541A"/>
+    </linearGradient>
+    <clipPath id="mfd-clip">
+      <path d="M4,54 a50,50 0 1,0 100,0 a50,50 0 1,0 -100,0 z"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#mfd-clip)">
+    <path d="M0,0 h108 v108 h-108 z" fill="url(#mfd-sea)"/>
+    <path d="M0,0 H58 L52,18 L60,32 L48,48 L56,66 L40,86 L44,108 H0 Z" fill="url(#mfd-land)"/>
+    <path d="M4,22 C18,17 32,28 29,44 C26,59 11,63 2,55 Z" fill="#8CA23A"/>
+    <path d="M8,30 C16,27 24,34 22,43 C20,52 11,54 6,49 Z" fill="#B99A4A"/>
+    <path d="M26,118 C34,88 46,66 60,50 C70,38 82,22 96,6" fill="none" stroke="#F531E0" stroke-width="5" stroke-linecap="round"/>
+    <path d="M68,35 l5,5 l-5,5 l-5,-5 z" fill="#FFFFFF"/>
+  </g>
+
+  <path d="M28.02,39 A30,30 0 0 1 79.98,39" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+
+  <g transform="rotate(-30 54 54)"><path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/></g>
+  <path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/>
+  <g transform="rotate(30 54 54)"><path d="M53.2,24 h1.6 v5 h-1.6 z" fill="#FFFFFF"/></g>
+
+  <path d="M54,42 L56,50 L70,58 L70,62 L56,57 L56,66 L60,70 L60,72 L48,72 L48,70 L52,66 L52,57 L38,62 L38,58 L52,50 Z"
+        fill="#FFFFFF" stroke="#0B0D10" stroke-width="1.4" stroke-linejoin="round"/>
+</svg>
