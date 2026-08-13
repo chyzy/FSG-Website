@@ -1,0 +1,3 @@
+# LF w repo i w katalogu roboczym — spójnie z .editorconfig,
+# bez ostrzeżeń autocrlf przy każdym dotknięciu pliku.
+* text=auto eol=lf
