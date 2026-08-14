@@ -32,7 +32,9 @@ martwych odnośników (strona setup jest linkowana z binarki aplikacji!) albo
 optymalizacja obrazków. Migracja to dodanie pliku workflow i zmiana źródła
 w Settings.
 
-Adres do czasu podpięcia domeny: `https://chyzy.github.io/FSG-Website/`.
+Adres: **https://flightsimgeeks.com** (domena podpięta 2026-08-14, certyfikat Let's Encrypt
+wystawiony automatycznie przez Pages, „Enforce HTTPS" do zaznaczenia w Settings).
+Stary adres `https://chyzy.github.io/FSG-Website/` działa dalej i przekierowuje.
 
 ## Zasady
 
@@ -67,8 +69,10 @@ Zrzuty pochodzą z żywej aplikacji podłączonej do sima (C172, MSFS 2024):
       Community, „nothing to configure"),
 - [ ] linki Google Play są wpisane pod finalne `applicationId` — sprawdzić po
       publikacji, odblokować odznaki App Store gdy wyjdzie iOS,
-- [ ] przy podpięciu domeny: podmienić `og:url`/`og:image`/`canonical`
-      (absolutne URL-e) i href w `404.html`,
+- [x] ~~przy podpięciu domeny: podmienić `og:url`/`og:image`/`canonical` i href w `404.html`~~
+      — zrobione 2026-08-14,
+- [ ] **polityka prywatności** pod `/privacy/` — Google Play wymaga jej adresu
+      w listingu obu aplikacji (i odwołuje się do niej formularz Data safety),
 - [ ] ujednolicić tekst UI `StartupPanel.tsx` (porada o module — dziś
       deweloperska) z sekcją troubleshooting strony.
 

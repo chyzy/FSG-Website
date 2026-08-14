@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — FlightSimGeeks</title>
+  <meta name="description" content="Privacy policy for the FSG G1000 PFD and FSG G1000 MFD apps and the FSG SimBridge companion program. No accounts, no analytics, no data sent to us.">
+  <!-- noindex do usunięcia przy publicznym starcie razem z resztą stron. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0d10">
+  <!-- ⚠ Ten adres trafia do listingu obu aplikacji w Google Play i musi żyć tak długo,
+       jak aplikacje stoją w sklepie. Nie zmieniać ścieżki /privacy/. -->
+  <meta property="og:url" content="https://flightsimgeeks.com/privacy/">
+  <link rel="canonical" href="https://flightsimgeeks.com/privacy/">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/icon-pfd.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="../">
+      <img src="../assets/img/icon-pfd.svg" alt="" width="28" height="28">
+      FlightSimGeeks
+    </a>
+    <nav class="nav-links">
+      <a href="../">Home</a>
+      <a class="nav-cta" href="../fsg-bridge/setup/">Setup guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container guide">
+      <p class="kicker">Privacy Policy</p>
+      <h1>We don't collect your data.</h1>
+      <p class="lead">
+        This policy covers the <b>FSG G1000 PFD</b> and <b>FSG G1000 MFD</b> apps and the
+        <b>FSG SimBridge</b> companion program for Windows. The short version: there are no
+        accounts, no analytics and no advertising, and nothing you do in the apps is sent to
+        us — because we run no servers for them.
+      </p>
+      <p class="fineprint">Last updated: 14 August 2026</p>
+    </div>
+  </section>
+
+  <section class="mt-0">
+    <div class="container guide">
+
+      <div class="guide-step">
+        <h2><span class="no">01</span>Who is responsible</h2>
+        <p>
+          The data controller is <b>Badisoft Bartosz Chyży</b>, Poland, VAT ID (NIP)
+          <b>7831873852</b>, e-mail <a href="mailto:chyzybartosz@gmail.com">chyzybartosz@gmail.com</a>.
+          Because the controller is established in the European Union, the EU General Data
+          Protection Regulation (GDPR) applies to any personal data processing described here.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">02</span>What the apps store on your device</h2>
+        <p>Exactly two things, and both only so the app can reconnect by itself next time:</p>
+        <ul>
+          <li>the <b>address of your PC</b> on your local network (for example
+              <code>192.168.0.17:5100</code>), chosen by you or found automatically,</li>
+          <li>the <b>name that PC announces</b> on the network, so the app can show it in the list.</li>
+        </ul>
+        <p>
+          Both stay in the app's own storage on your device. They are never transmitted to us,
+          and uninstalling the app removes them. The apps create no user accounts and ask for
+          no personal information — there is no sign-up, no e-mail, no profile.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">03</span>What travels over your network</h2>
+        <p>
+          While you fly, the apps exchange data with <b>one destination only: your own PC</b>,
+          over your local network. That traffic carries the instrument picture coming from your
+          simulator and the button presses and knob turns going back to it. It does not leave
+          your network and it never reaches us.
+        </p>
+        <p>
+          To find your PC, the apps use standard local network discovery (mDNS/DNS-SD). This
+          asks devices on your own network to identify themselves; it does not reach the internet.
+        </p>
+        <div class="callout warn">
+          <b>One honest technical note.</b> Traffic between the app and your PC is
+          <b>not encrypted</b>. It stays inside your local network, but anyone already on that
+          same network could in principle observe it. It contains instrument imagery and control
+          commands — no personal data, no credentials. We mention it because you deserve to know,
+          and because it is declared the same way in the app's Data safety entry on Google Play.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">04</span>What FSG SimBridge stores on your PC</h2>
+        <p>
+          The companion program keeps a small amount of data locally, in
+          <code>%LOCALAPPDATA%\FlightSimGeeks\FSG</code>:
+        </p>
+        <ul>
+          <li><b>panel calibration</b> — where the instrument sits in each aircraft's cockpit,
+              so you only have to point at it once,</li>
+          <li><b>diagnostic logs</b> — a rotating technical log used when something goes wrong.</li>
+        </ul>
+        <p>
+          None of it is transmitted anywhere. If you ever send us a log to help diagnose a
+          problem, that is your deliberate choice, and you can read the file first — it is
+          plain text.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">05</span>Purchases</h2>
+        <p>
+          The apps are sold through <b>Google Play</b>. Google is the merchant of record: it
+          handles the payment, and <b>we never see your payment details</b>. We receive from
+          Google only what any developer receives — aggregated sales and payout reporting.
+          Google's own handling of your data is described in the
+          <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.
+        </p>
+        <p>
+          Google Play may also collect crash reports and basic usage statistics as part of the
+          platform itself. <b>We add no analytics of our own</b> — the apps contain no tracking,
+          advertising or measurement libraries whatsoever.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">06</span>This website</h2>
+        <p>
+          flightsimgeeks.com is a static site hosted on <b>GitHub Pages</b>. It sets no cookies
+          and runs no analytics. GitHub, as the hosting provider, processes standard server logs
+          (including visitor IP addresses) to deliver and protect the site — see the
+          <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">07</span>Children</h2>
+        <p>
+          These are flight simulation tools for a general audience. They are not directed at
+          children, and they collect no personal data from anyone, including children.
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">08</span>Your rights</h2>
+        <p>
+          Under the GDPR you have the right to access, correct, erase, restrict and object to
+          the processing of your personal data, and to data portability. In practice we hold
+          <b>no personal data about app users</b>, so there is usually nothing to retrieve or
+          delete — but if you contact us we will tell you exactly that, in writing, and act on
+          any request that does apply.
+        </p>
+        <p>
+          If you believe your data has been mishandled, you may lodge a complaint with the Polish
+          supervisory authority, the President of the Personal Data Protection Office (UODO).
+        </p>
+      </div>
+
+      <div class="guide-step">
+        <h2><span class="no">09</span>Changes to this policy</h2>
+        <p>
+          If the apps ever start processing data differently — for example if a future version
+          adds an online feature — this page will be updated before that version ships, and the
+          date at the top will change. Material changes will also be noted in the app's release
+          notes on Google Play.
+        </p>
+      </div>
+
+      <div class="setup-teaser">
+        <div>
+          <h2 class="mt-0">Questions?</h2>
+          <p class="teaser-lead">
+            Write to <a href="mailto:chyzybartosz@gmail.com">chyzybartosz@gmail.com</a> — privacy
+            questions get a real answer from a real person, usually the same week.
+          </p>
+        </div>
+        <a class="btn btn-ghost" href="../">Back to the site</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      © 2026 FlightSimGeeks ·
+      <a href="../">flightsimgeeks.com</a>
+    </div>
+    <div class="footer-contact">
+      <span class="footer-label">Contact</span>
+      Badisoft Bartosz Chyży<br>
+      <a href="mailto:chyzybartosz@gmail.com">chyzybartosz@gmail.com</a><br>
+      NIP 7831873852
+    </div>
+    <div class="trademark">
+      Garmin and G1000 are trademarks of Garmin Ltd. Microsoft Flight Simulator is a trademark
+      of Microsoft Corporation. FlightSimGeeks is not affiliated with or endorsed by Garmin
+      or Microsoft.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -11,10 +11,12 @@
   <meta property="og:title" content="Set up FSG SimBridge — setup guide">
   <meta property="og:description" content="Set up FSG SimBridge on your PC, connect the FSG G1000 app on your tablet and make your first flight — about two minutes.">
   <meta property="og:type" content="website">
-  <!-- og/canonical wymagają adresów absolutnych — podmienić razem z domeną i noindex. -->
-  <meta property="og:url" content="https://chyzy.github.io/FSG-Website/fsg-bridge/setup/">
-  <meta property="og:image" content="https://chyzy.github.io/FSG-Website/assets/img/og-image.jpg">
-  <link rel="canonical" href="https://chyzy.github.io/FSG-Website/fsg-bridge/setup/">
+  <!-- og/canonical muszą być absolutne (to metadane, nie zasoby) — stąd pełna domena.
+       ⚠ Ta ścieżka jest ZASZYTA w binarce aplikacji (client/src/config/product.ts) —
+       musi żyć tak długo, jak aplikacja stoi w sklepie. -->
+  <meta property="og:url" content="https://flightsimgeeks.com/fsg-bridge/setup/">
+  <meta property="og:image" content="https://flightsimgeeks.com/assets/img/og-image.jpg">
+  <link rel="canonical" href="https://flightsimgeeks.com/fsg-bridge/setup/">
   <link rel="icon" type="image/svg+xml" href="../../assets/img/icon-pfd.svg">
   <link rel="stylesheet" href="../../assets/site.css">
 </head>
@@ -48,7 +50,7 @@
 
       <p class="fineprint">What you need before we start:</p>
       <ul class="checklist">
-        <li><span class="dot"></span><span>A Windows 10/11 PC running <b>Microsoft Flight Simulator 2024</b></span></li>
+        <li><span class="dot"></span><span>A Windows 10/11 PC with <b>Microsoft Flight Simulator 2024</b> installed — you can leave the simulator closed for now</span></li>
         <li><span class="dot"></span><span>An Android tablet or phone with the <b>FSG G1000 PFD</b> or <b>MFD</b> app</span></li>
         <li><span class="dot"></span><span>Both on the <b>same network</b> — ideally the PC on a cable</span></li>
       </ul>
@@ -81,9 +83,14 @@
         <p>
           The installer also places the <b>FSG-Bridge package</b> into the simulator's
           <b>Community folder</b>. That package is what lets the app drive the avionics knobs
-          (FMS, map range, NAV/COM tuning, volumes). The simulator loads packages at startup —
-          so if MSFS was running during the install, <b>restart it once</b>.
+          (FMS, map range, NAV/COM tuning, volumes).
         </p>
+        <div class="callout">
+          <b>Install with the simulator closed.</b> Microsoft Flight Simulator reads its
+          packages only while starting up, so installing first means everything is in place
+          the moment you launch it. If MSFS happened to be running during the install,
+          nothing is broken — just <b>restart the simulator once</b>.
+        </div>
       </div>
 
       <!-- ── Krok 2 ─────────────────────────────────────────────────── -->
@@ -334,7 +341,8 @@
   <div class="container footer-inner">
     <div>
       © 2026 FlightSimGeeks ·
-      <a href="../../">flightsimgeeks.com</a>
+      <a href="../../">flightsimgeeks.com</a> ·
+      <a href="../../privacy/">Privacy</a>
     </div>
     <div class="footer-contact">
       <span class="footer-label">Contact</span>
