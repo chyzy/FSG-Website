@@ -126,7 +126,8 @@ kbd { border-bottom-width: 2px; }
   white-space: nowrap;
 }
 .brand:hover { text-decoration: none; color: var(--text); }
-.brand svg { display: block; }
+.brand svg, .brand img { display: block; }
+.brand-accent { color: var(--accent-strong); }
 
 .nav-links {
   display: flex;

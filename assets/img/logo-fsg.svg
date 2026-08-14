@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 44" role="img" aria-label="FlightSimGeeks logo">
+  <!-- Nerd-okulary, w których szkłami są dwa wyświetlacze produktów:
+       lewe = PFD (horyzont + bursztynowa delta), prawe = MFD (mapa + magenta trasa).
+       Kolory 1:1 z ikon aplikacji (client/android/.../drawable). -->
+  <defs>
+    <linearGradient id="fsg-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3ED6"/><stop offset="1" stop-color="#0A1F86"/>
+    </linearGradient>
+    <linearGradient id="fsg-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A8A2E"/><stop offset="1" stop-color="#27541A"/>
+    </linearGradient>
+    <clipPath id="fsg-lens-l"><rect x="3" y="12" width="26" height="22" rx="6"/></clipPath>
+    <clipPath id="fsg-lens-r"><rect x="35" y="12" width="26" height="22" rx="6"/></clipPath>
+  </defs>
+
+  <!-- zauszniki -->
+  <path d="M3,16 L0.8,13.6" fill="none" stroke="#f2f3f5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M61,16 L63.2,13.6" fill="none" stroke="#f2f3f5" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- lewe szkło: PFD -->
+  <g clip-path="url(#fsg-lens-l)">
+    <rect x="3" y="12" width="26" height="22" fill="url(#fsg-sky)"/>
+    <rect x="1" y="24.2" width="30" height="11" fill="url(#fsg-ground)"/>
+    <rect x="1" y="23.4" width="30" height="1.6" fill="#FFFFFF"/>
+    <path d="M16,17.4 L19.4,22.4 H12.6 Z" fill="#FFC61A" stroke="#0B0D10" stroke-width="0.9" stroke-linejoin="round"/>
+  </g>
+  <rect x="3" y="12" width="26" height="22" rx="6" fill="none" stroke="#f2f3f5" stroke-width="3"/>
+
+  <!-- prawe szkło: MFD -->
+  <g clip-path="url(#fsg-lens-r)">
+    <rect x="35" y="12" width="26" height="22" fill="url(#fsg-sky)"/>
+    <path d="M35,12 h13.5 l-3.5,7 4,6.5 -5,8.5 h-9 Z" fill="url(#fsg-ground)"/>
+    <path d="M37,32.5 C43,24 49,20 59.5,13.5" fill="none" stroke="#F531E0" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M52.5,20 l2.2,2.2 -2.2,2.2 -2.2,-2.2 Z" fill="#FFFFFF"/>
+  </g>
+  <rect x="35" y="12" width="26" height="22" rx="6" fill="none" stroke="#f2f3f5" stroke-width="3"/>
+
+  <!-- mostek -->
+  <path d="M29,18 C30.5,15.4 33.5,15.4 35,18" fill="none" stroke="#f2f3f5" stroke-width="3"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon: znak "okulary geeka" na ciemnym kaflu (kafel daje kontrast białym
+       oprawkom na jasnych motywach przeglądarki). Wersja uproszczona względem
+       logo-fsg.svg — grubsze oprawki, płaskie wypełnienia czytelne w 16 px. -->
+  <defs>
+    <clipPath id="fav-l"><rect x="3" y="12" width="26" height="22" rx="6"/></clipPath>
+    <clipPath id="fav-r"><rect x="35" y="12" width="26" height="22" rx="6"/></clipPath>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0b0d10"/>
+  <g transform="translate(32,33) scale(0.88) translate(-32,-23)">
+    <g clip-path="url(#fav-l)">
+      <rect x="3" y="12" width="26" height="22" fill="#1B3ED6"/>
+      <rect x="1" y="24" width="30" height="11" fill="#4A8A2E"/>
+      <rect x="1" y="23" width="30" height="1.9" fill="#FFFFFF"/>
+      <path d="M16,16.6 L20,22.4 H12 Z" fill="#FFC61A"/>
+    </g>
+    <rect x="3" y="12" width="26" height="22" rx="6" fill="none" stroke="#f2f3f5" stroke-width="3.5"/>
+    <g clip-path="url(#fav-r)">
+      <rect x="35" y="12" width="26" height="22" fill="#1B3ED6"/>
+      <path d="M35,12 h13.5 l-3.5,7 4,6.5 -5,8.5 h-9 Z" fill="#4A8A2E"/>
+      <path d="M37,32.5 C43,24 49,20 59.5,13.5" fill="none" stroke="#F531E0" stroke-width="3.2" stroke-linecap="round"/>
+    </g>
+    <rect x="35" y="12" width="26" height="22" rx="6" fill="none" stroke="#f2f3f5" stroke-width="3.5"/>
+    <path d="M29,18 C30.5,15.2 33.5,15.2 35,18" fill="none" stroke="#f2f3f5" stroke-width="3.5"/>
+  </g>
+</svg>
