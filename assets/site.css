@@ -17,16 +17,16 @@
   --text-dim: #c3c6ce;
   --muted: #7d828e;
 
-  /* Akcenty żywcem z aplikacji: bursztyn #e0c88f (ekrany startowe, legendy bezela),
-     #FFC61A (znak PFD), magenta #F531E0 (znak MFD), błękit #6ec1ff (odnośniki),
-     zieleń #6ee38a (stan ready). */
-  --accent: #e0c88f;
-  --accent-strong: #ffc61a;
+  /* Akcenty żywcem z aplikacji: #FFC61A (znak PFD, logo, favicon), magenta #F531E0
+     (znak MFD), błękit #6ec1ff (odnośniki), zieleń #6ee38a (stan ready).
+     Strona ma dokładnie jedną żółć — kanarkową ze znaku; --accent-strong to jej
+     jaśniejszy odcień na hover, nie osobny kolor. */
+  --accent: #ffc61a;
+  --accent-strong: #ffd65c;
   --link: #6ec1ff;
   --link-strong: #9dd6ff;
   --magenta: #f531e0;
   --ok: #6ee38a;
-  --warn: #e0c88f;
 
   --radius: 14px;
   --radius-sm: 9px;
@@ -127,7 +127,7 @@ kbd { border-bottom-width: 2px; }
 }
 .brand:hover { text-decoration: none; color: var(--text); }
 .brand svg, .brand img { display: block; }
-.brand-accent { color: var(--accent-strong); }
+.brand-accent { color: var(--accent); }
 
 .nav-links {
   display: flex;
@@ -232,7 +232,7 @@ kbd { border-bottom-width: 2px; }
   background: var(--accent);
   color: #241a05;
 }
-.btn-primary:hover { background: #ecd7a5; color: #241a05; }
+.btn-primary:hover { background: var(--accent-strong); color: #241a05; }
 
 .btn-ghost {
   border-color: var(--border-bright);
@@ -368,7 +368,7 @@ h2 {
   font-family: var(--mono);
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   font-weight: 700;
-  color: var(--accent-strong);
+  color: var(--accent);
   letter-spacing: -0.02em;
 }
 .stat .num sub, .stat .num small { font-size: 0.45em; color: var(--text-dim); font-weight: 500; }

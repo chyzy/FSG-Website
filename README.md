@@ -9,7 +9,7 @@ budowania: to, co leży w korzeniu repozytorium, jest serwowane 1:1.
 |---------|-------|
 | `index.html` | strona główna: hero, liczby z pomiarów, jak działa, features, samoloty, produkty PFD/MFD, FAQ |
 | `fsg-bridge/setup/index.html` | instrukcja konfiguracji — **adres zaszyty w binarce aplikacji** (`BRIDGE_SETUP_URL` w `client/src/config/product.ts` repo FSG-G1000). Ścieżka `/fsg-bridge/setup` musi działać na lata. |
-| `assets/site.css` | jedyny arkusz; paleta wzięta z aplikacji (bursztyn `#e0c88f`, tło `#0b0d10`, magenta MFD `#f531e0`) |
+| `assets/site.css` | jedyny arkusz; paleta wzięta z aplikacji (żółć znaku `#ffc61a`, tło `#0b0d10`, magenta MFD `#f531e0`) |
 | `assets/img/icon-*.svg` | ikony aplikacji przekonwertowane 1:1 z Android vector drawables (`client/android/app/src/*/res/drawable/`) — poprawka tam = poprawka tu |
 | `assets/img/app-*.webp` | zrzuty **żywej** aplikacji (patrz niżej: jak odnowić) |
 | `assets/img/og-image.jpg` | kadr 1200×630 do kart linków (Discord/fora) |
