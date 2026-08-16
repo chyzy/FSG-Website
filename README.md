@@ -8,7 +8,8 @@ budowania: to, co leży w korzeniu repozytorium, jest serwowane 1:1.
 | Ścieżka | Co to |
 |---------|-------|
 | `index.html` | strona główna: hero, liczby z pomiarów, jak działa, features, samoloty, produkty PFD/MFD, FAQ |
-| `fsg-bridge/setup/index.html` | instrukcja konfiguracji — **adres zaszyty w binarce aplikacji** (`BRIDGE_SETUP_URL` w `client/src/config/product.ts` repo FSG-G1000). Ścieżka `/fsg-bridge/setup` musi działać na lata. |
+| `setup/index.html` | instrukcja konfiguracji — **adres zaszyty w binarce aplikacji** (`BRIDGE_SETUP_URL` w `client/src/config/product.ts` repo FSG-G1000). Ścieżka `/setup` musi działać na lata (skrócona z `/fsg-bridge/setup` 2026-08-16). |
+| `fsg-bridge/setup/index.html` | stub przekierowania na `/setup/` — stary adres siedzi w przedpremierowych buildach aplikacji; do skasowania, gdy wyginą |
 | `assets/site.css` | jedyny arkusz; paleta wzięta z aplikacji (żółć znaku `#ffc61a`, tło `#0b0d10`, magenta MFD `#f531e0`) |
 | `assets/img/icon-*.svg` | ikony aplikacji przekonwertowane 1:1 z Android vector drawables (`client/android/app/src/*/res/drawable/`) — poprawka tam = poprawka tu |
 | `assets/img/app-*.webp` | zrzuty **żywej** aplikacji (patrz niżej: jak odnowić) |
@@ -64,7 +65,7 @@ Zrzuty pochodzą z żywej aplikacji podłączonej do sima (C172, MSFS 2024):
 
 - [ ] usunąć `<meta name="robots" content="noindex">` z **obu** stron,
 - [ ] podmienić przycisk „Download FSG SimBridge" na prawdziwy adres wydania
-      (span → `<a>`; szukaj `TODO` w `fsg-bridge/setup/index.html`),
+      (span → `<a>`; szukaj `TODO` w `setup/index.html`),
 - [ ] zweryfikować opis kroku 01 na finalnym instalatorze (zapora, pakiet
       Community, „nothing to configure"),
 - [ ] linki Google Play są wpisane pod finalne `applicationId` — sprawdzić po
