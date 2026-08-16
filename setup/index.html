@@ -32,6 +32,7 @@
     <nav class="nav-links">
       <a href="#connect">Connecting</a>
       <a href="#first-flight">First flight</a>
+      <a href="#on-your-pc">On your PC</a>
       <a href="#network">Network</a>
       <a class="nav-cta" href="#troubleshooting">Troubleshooting</a>
     </nav>
@@ -77,20 +78,30 @@
           <span class="btn btn-primary is-soon">Download FSG SimBridge</span>
         </p>
         <div class="callout warn">
-          <b>When Windows asks about network access — allow it.</b> The firewall prompt appears
-          the first time the bridge runs. Without that permission your tablet will never find
-          the PC.
+          <b>Windows asks for permission once — say yes.</b> The first time the bridge runs,
+          right after the install, Windows puts up a permission window. That is the bridge asking
+          to be let through the firewall so your tablet can reach this PC. Answer <b>No</b> and
+          nothing is damaged — but the app will never find your PC, and you will not be asked
+          again.
         </div>
         <p>
           The installer also places the <b>FSG-Bridge package</b> into the simulator's
           <b>Community folder</b>. That package is what lets the app drive the avionics knobs
-          (FMS, map range, NAV/COM tuning, volumes).
+          (FMS, map range, NAV/COM tuning, volumes). If you have not installed or run the
+          simulator yet, the bridge simply adds it later, by itself.
         </p>
         <div class="callout">
           <b>Install with the simulator closed.</b> Microsoft Flight Simulator 2024 reads
           its packages only while starting up, so installing first means everything is in
           place the moment you launch it. If the simulator happened to be running during
           the install, nothing is broken — just <b>restart it once</b>.
+        </div>
+        <div class="callout">
+          <b>A summary appears when it's done.</b> A few seconds after the install, the bridge
+          tells you what it set up: whether it starts with Windows, whether it is allowed through
+          the firewall, and whether the avionics module is in place. All ticks — you are finished
+          on the PC, and the bridge is already running. A <b>✗</b> means one of those did not
+          happen, and <a href="#troubleshooting">Troubleshooting</a> covers each case.
         </div>
       </div>
 
@@ -175,6 +186,73 @@
         </div>
       </div>
 
+      <!-- ── Most na PC ─────────────────────────────────────────────── -->
+      <!-- Sekcja referencyjna: co użytkownik zastaje na komputerze PO instalacji.
+           Most nie ma okna ani konsoli, więc bez tego opisu nie ma jak stwierdzić,
+           że cokolwiek działa. Bez numeru, jak #network i #troubleshooting — nagłówek
+           strony obiecuje CZTERY kroki. -->
+      <div class="guide-step" id="on-your-pc">
+        <h2>The bridge on your PC</h2>
+        <p>
+          FSG SimBridge has no window. It runs quietly in the background and shows itself as one
+          small icon in the <b>notification area</b>, next to the clock. That icon is the whole
+          interface — everything you need is one right-click away.
+        </p>
+        <div class="callout">
+          <b>Can't see the icon? Look under the arrow.</b> Windows 11 tucks new icons away behind
+          the <b>˄</b> arrow next to the clock. Click the arrow, then <b>drag the FSG SimBridge
+          icon onto the taskbar</b> to keep it in sight. Windows does not let programs do that
+          for you.
+        </div>
+        <p>Right-click the icon and you get three things:</p>
+        <ul>
+          <li><b>Show Console</b> — opens a window with the bridge's own running log, useful when
+              something is off and you want to see what it says. Nothing to do here on a normal day.</li>
+          <li><b>Check for Updates</b> — see below. You should never need it.</li>
+          <li><b>Exit</b> — stops the bridge. The tablet goes back to its waiting screen until
+              the bridge runs again.</li>
+        </ul>
+
+        <h3>It starts by itself</h3>
+        <p>
+          The bridge starts with Windows every time you sign in and waits for the simulator in
+          the background. Nothing to launch, nothing to remember — that is the whole idea.
+        </p>
+        <p>
+          Prefer to start it by hand? Open <b>Task Manager</b>, go to <b>Startup apps</b> and
+          switch <b>FSG SimBridge</b> to <i>Disabled</i>. From then on you start it yourself from
+          the <b>Start menu</b> before you fly — the app on the tablet can do nothing until the
+          bridge is running.
+        </p>
+
+        <h3>Updates look after themselves</h3>
+        <p>
+          The bridge checks for new versions on its own and downloads them in the background. It
+          only swaps itself over when nobody is watching a panel and the simulator is
+          disconnected, so an update can never cut into a flight. You do not have to do anything
+          — and you should <b>not</b> download the installer again to update.
+        </p>
+        <p>
+          <b>Check for Updates</b> in the icon menu simply asks the question right now, if you
+          are curious. The answer arrives as a short message over the icon.
+        </p>
+
+        <h3>Removing it</h3>
+        <p>
+          Open <b>Settings → Apps</b>, find <b>FSG SimBridge</b> in the list of installed apps and
+          remove it the normal Windows way. It takes the <b>FSG-Bridge package</b> out of the
+          <b>Community folder</b> on the way out, so the simulator is left exactly as it was.
+        </p>
+        <p>
+          There is deliberately no “uninstall” in the icon menu. The bridge sits next to the clock
+          for days on end, and a one-click way to delete it there is a mistake waiting to happen.
+        </p>
+        <p class="fineprint">
+          Your saved PFD positions stay on the PC. Install the bridge again later and every
+          aircraft you have already shown it stays calibrated.
+        </p>
+      </div>
+
       <!-- ── Sieć ───────────────────────────────────────────────────── -->
       <!-- Sekcje referencyjne bez numerów — nagłówek strony obiecuje CZTERY kroki. -->
       <div class="guide-step" id="network">
@@ -210,19 +288,36 @@
           <summary>The app can't find my PC</summary>
           <div class="body">
             <ul>
-              <li>Is the bridge running on the PC? Start it and watch the app —
-                  it rescans every ten seconds or so and will pick it up.</li>
+              <li>Is the bridge running on the PC? Look for its icon next to the clock (under
+                  the <b>˄</b> arrow on Windows 11). If it is not there, start <b>FSG SimBridge</b>
+                  from the Start menu and watch the app — it rescans every ten seconds or so and
+                  will pick it up.</li>
               <li>Are both devices on the same network? A guest Wi-Fi or a mobile hotspot on
                   the tablet counts as a different network.</li>
-              <li>Did Windows Firewall get its permission? It asks only <b>once</b> — if the
-                  prompt was dismissed or denied, restarting the bridge will not bring it
-                  back. Open <b>Windows Security → Firewall &amp; network protection →
-                  Allow an app through firewall</b> and make sure <code>fsg-simbridge</code>
-                  is allowed on private networks.</li>
+              <li>Did you answer <b>No</b> to the permission window during the install? Then the
+                  bridge never got through the firewall. See <b>“I said No to the permission
+                  window”</b> below.</li>
               <li>Some routers isolate wireless clients from each other (“AP isolation”/“client
                   isolation”). Either disable that, or use
                   <b>“Enter the address manually”</b> with the PC's IP.</li>
             </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>I said “No” to the permission window during the install</summary>
+          <div class="body">
+            <p>
+              That window was the bridge asking to be let through Windows Firewall. Without it
+              your tablet cannot reach this PC — and the bridge does not ask again on later
+              starts, because a permission window at every sign-in is exactly the thing that
+              makes people turn a program off.
+            </p>
+            <p>
+              The clean fix: remove FSG SimBridge in <b>Settings → Apps</b>, install it again and
+              answer <b>Yes</b> this time. Your saved PFD positions survive that, so you lose
+              nothing but a minute.
+            </p>
           </div>
         </details>
 
@@ -259,8 +354,9 @@
             <p>
               Still not responding? The package may have been removed — repairing
               Microsoft Flight Simulator 2024 through the Xbox app is known to wipe the
-              Community folder without asking. Re-run the FSG SimBridge installer; it puts
-              the package back.
+              Community folder without asking. You do not have to reinstall anything: the
+              bridge notices within a minute and puts the package back by itself. Then
+              <b>restart the simulator once</b>, because it only loads packages while starting up.
             </p>
           </div>
         </details>
@@ -271,7 +367,8 @@
             <p>
               The buttons travel one path, the avionics knobs another — the knobs need the
               <b>FSG-Bridge package</b> in the simulator's Community folder. See the point
-              above: restart the simulator, and if that doesn't help, re-run the installer.
+              above: restart the simulator, and give the bridge a minute to put the package
+              back if it went missing.
             </p>
           </div>
         </details>
@@ -317,9 +414,30 @@
           <summary>The MFD app says the bridge cannot serve it</summary>
           <div class="body">
             <p>
-              The FSG SimBridge on your PC is older than the app. Update it — one update
-              serves both displays — and the app reconnects once it restarts.
+              The FSG SimBridge on your PC is older than the app. It updates itself within a few
+              hours; to hurry it along, right-click its icon next to the clock and choose
+              <b>Check for Updates</b>. The app reconnects once the bridge restarts.
             </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>The installer refuses to replace an existing installation</summary>
+          <div class="body">
+            <p>
+              You are running the installer over a copy that is already on the PC — something you
+              almost never need to do, because the bridge updates itself. If you do, two things
+              have to be true first:
+            </p>
+            <ol>
+              <li><b>Close the bridge.</b> Right-click its icon next to the clock and choose
+                  <b>Exit</b>.</li>
+              <li><b>Close any Explorer window</b> showing the bridge's own folder. An open folder
+                  alone is enough to block the installer, even with the bridge already closed —
+                  including the folder the installer's own <b>Open Install Directory</b> button
+                  opens for you.</li>
+            </ol>
+            <p>Then run the installer again and it goes through.</p>
           </div>
         </details>
       </div>
