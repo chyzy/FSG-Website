@@ -1,93 +1,110 @@
-# FSG-Website — strona FlightSimGeeks (flightsimgeeks.com)
+# FSG-Website — the FlightSimGeeks site (flightsimgeeks.com)
 
-Statyczna strona HTML publikowana przez GitHub Pages. Bez generatora i bez kroku
-budowania: to, co leży w korzeniu repozytorium, jest serwowane 1:1.
+A static HTML site published through GitHub Pages. No generator and no build step:
+whatever sits in the repository root is served as-is.
 
-## Struktura
+## Layout
 
-| Ścieżka | Co to |
-|---------|-------|
-| `index.html` | strona główna: hero, liczby z pomiarów, jak działa, features, samoloty, produkty PFD/MFD, FAQ |
-| `setup/index.html` | instrukcja konfiguracji — **adres zaszyty w binarce aplikacji** (`BRIDGE_SETUP_URL` w `client/src/config/product.ts` repo FSG-G1000). Ścieżka `/setup` musi działać na lata (skrócona z `/fsg-bridge/setup` 2026-08-16). |
-| `fsg-bridge/setup/index.html` | stub przekierowania na `/setup/` — stary adres siedzi w przedpremierowych buildach aplikacji; do skasowania, gdy wyginą |
-| `assets/site.css` | jedyny arkusz; paleta wzięta z aplikacji (żółć znaku `#ffc61a`, tło `#0b0d10`, magenta MFD `#f531e0`) |
-| `assets/img/icon-*.svg` | ikony aplikacji przekonwertowane 1:1 z Android vector drawables (`client/android/app/src/*/res/drawable/`) — poprawka tam = poprawka tu |
-| `assets/img/app-*.webp` | zrzuty **żywej** aplikacji (patrz niżej: jak odnowić) |
-| `assets/img/og-image.jpg` | kadr 1200×630 do kart linków (Discord/fora) |
-| `404.html` | style inline — Pages serwuje go spod dowolnej ścieżki, więc nie może zależeć od ścieżek relatywnych |
+| Path | What it is |
+|------|------------|
+| `index.html` | home page: hero, measured numbers, how it works, features, aircraft, PFD/MFD products, FAQ |
+| `setup/index.html` | setup guide — **this address is compiled into the mobile app** (`BRIDGE_SETUP_URL` in `client/src/config/product.ts` of the FSG-G1000 repo). The `/setup` path has to keep working for years (shortened from `/fsg-bridge/setup` on 2026-08-16). |
+| `fsg-bridge/setup/index.html` | redirect stub pointing at `/setup/` — the old address is baked into pre-release builds of the app; delete once those are gone |
+| `assets/site.css` | the only stylesheet; palette taken from the app (logo yellow `#ffc61a`, background `#0b0d10`, MFD magenta `#f531e0`) |
+| `assets/img/icon-*.svg` | app icons converted 1:1 from the Android vector drawables (`client/android/app/src/*/res/drawable/`) — fix them there, fix them here |
+| `assets/img/app-*.webp` | screenshots of the **live** app (see below: how to refresh them) |
+| `assets/img/og-image.jpg` | 1200×630 crop for link cards (Discord, forums) |
+| `404.html` | inline styles — Pages serves it from any path, so it must not depend on relative paths |
 
-## Jak to jest publikowane
+## How it is published
 
-**Push na `main` = publikacja.** GitHub Pages serwuje zawartość gałęzi wprost
+**Push to `main` = publish.** GitHub Pages serves the branch contents directly
 (Settings → Pages → Source: **Deploy from a branch**, `main` / `/ (root)`),
-bez workflow i bez kroku budowania.
+with no workflow and no build step.
 
-Dlatego `.nojekyll` jest tu **niezbędny**, a nie ozdobny: w tym trybie Pages
-przepuszczają treść przez Jekyll, który pomija pliki i katalogi zaczynające się
-od podkreślenia.
+That is why `.nojekyll` is **required** here, not decorative: in this mode Pages
+runs the content through Jekyll, which skips files and directories starting with
+an underscore.
 
-Wersja przez GitHub Actions (`actions/deploy-pages`) istniała do commita
-`c895b8f` i jest w historii gita — warto do niej wrócić, gdy pojawi się krok
-budowania: podstawianie adresu wydania mostu z GitHub Releases, sprawdzarka
-martwych odnośników (strona setup jest linkowana z binarki aplikacji!) albo
-optymalizacja obrazków. Migracja to dodanie pliku workflow i zmiana źródła
-w Settings.
+A GitHub Actions version (`actions/deploy-pages`) existed up to commit `c895b8f`
+and is still in the git history — worth going back to once there is a build step
+to run: substituting the bridge release URL from GitHub Releases, a dead-link
+checker (the setup page is linked from inside the app binary!), or image
+optimisation. Migrating means adding a workflow file and changing the source in
+Settings.
 
-Adres: **https://flightsimgeeks.com** (domena podpięta 2026-08-14, certyfikat Let's Encrypt
-wystawiony automatycznie przez Pages, „Enforce HTTPS" do zaznaczenia w Settings).
-Stary adres `https://chyzy.github.io/FSG-Website/` działa dalej i przekierowuje.
+Address: **https://flightsimgeeks.com** (domain attached 2026-08-14, Let's Encrypt
+certificate issued automatically by Pages, "Enforce HTTPS" to be ticked in Settings).
+The old address `https://chyzy.github.io/FSG-Website/` still works and redirects.
 
-## Zasady
+## Rules
 
-- **Odnośniki i zasoby wyłącznie relatywne** (`./`, `../`) — strona żyje pod
-  podścieżką `/FSG-Website/` do czasu domeny. Wyjątek: `og:url`, `og:image`
-  i `canonical` w `<head>` muszą być absolutne.
-- **Terminologia = terminologia UI aplikacji**: „FSG SimBridge" (program),
-  `fsg-simbridge` (proces), „FSG-Bridge package" w „Community folder" (moduł),
-  „FSG G1000 PFD"/„FSG G1000 MFD" (aplikacje), zawsze pełne „Microsoft Flight
-  Simulator 2024".
-- **Tylko zmierzone liczby.** Źródła: README i docs/ repo FSG-G1000. Strona
-  przeszła rewizję fakt-po-fakcie 2026-08-13; nie dopisywać obietnic bez pomiaru.
+- **Links and assets are relative only** (`./`, `../`). The site lived under the
+  `/FSG-Website/` subpath before the custom domain, and that old address still
+  redirects — relative paths are what make both layouts work. Exception: `og:url`,
+  `og:image` and `canonical` in `<head>` must be absolute.
+- **Terminology follows the app's UI**: "FSG SimBridge" (the program),
+  `fsg-simbridge` (the process), "FSG-Bridge package" in the "Community folder"
+  (the module), "FSG G1000 PFD" / "FSG G1000 MFD" (the apps), always the full
+  "Microsoft Flight Simulator 2024".
+- **Measured numbers only.** Sources: the README and `docs/` of the FSG-G1000 repo.
+  The site went through a fact-by-fact review on 2026-08-13; do not add promises
+  that nobody measured.
+- **Write for the user, not for us.** No file names, process names, registry keys
+  or command-line switches on the page — those belong in the FSG-G1000 docs. The
+  four numbered steps carry only what the reader has to *do*; everything else is
+  reference material below the "You're good to go" card.
 
-## Zrzuty aplikacji — jak odnowić
+## App screenshots — how to refresh them
 
-Zrzuty pochodzą z żywej aplikacji podłączonej do sima (C172, MSFS 2024):
+The screenshots come from the live app connected to the simulator (C172, MSFS 2024):
 
-1. uruchom most w trybie dev z obydwoma panelami:
+1. run the bridge in dev mode with both panels:
    `dotnet run --project server/src/fsg-simbridge -- --Popout:Panels:mfd:Enabled=true`
-   (w repo FSG-G1000; klient zbudowany: `cd client && npm run build && npm run build:mfd`),
-2. wczytaj lot w simie i poczekaj, aż popouty wstaną (`/api/status`),
-3. zrzuty przez playwright-core + systemowy Edge (viewport 1280×800, deviceScaleFactor 2)
-   z `http://localhost:5100/pfd/` i `/mfd/`, potem konwersja canvas→WebP q0.85.
-   Skrypty siedzą w historii sesji Claude; odtworzenie: `shot.js` + `convert.js`.
+   (in the FSG-G1000 repo; client built with `cd client && npm run build && npm run build:mfd`),
+2. load a flight and wait for the popouts to come up (`/api/status`),
+3. capture with playwright-core + the system Edge (viewport 1280×800,
+   deviceScaleFactor 2) from `http://localhost:5100/pfd/` and `/mfd/`, then convert
+   canvas→WebP q0.85. The scripts live in the Claude session history; to recreate
+   them: `shot.js` + `convert.js`.
 
-## Checklista przed publicznym startem
+⚠ Since 2026-08-16 the bridge **no longer serves the client**, so
+`http://localhost:5100/pfd/` returns 404. New screenshots have to come from the
+vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
 
-- [ ] usunąć `<meta name="robots" content="noindex">` z **obu** stron,
-- [ ] podmienić przycisk „Download FSG SimBridge" na prawdziwy adres wydania
-      (span → `<a>`; szukaj `TODO` w `setup/index.html`),
-- [ ] zweryfikować opis kroku 01 na finalnym instalatorze (zapora, pakiet
-      Community, „nothing to configure"),
-- [ ] linki Google Play są wpisane pod finalne `applicationId` — sprawdzić po
-      publikacji, odblokować odznaki App Store gdy wyjdzie iOS,
-- [x] ~~przy podpięciu domeny: podmienić `og:url`/`og:image`/`canonical` i href w `404.html`~~
-      — zrobione 2026-08-14,
-- [ ] **polityka prywatności** pod `/privacy/` — Google Play wymaga jej adresu
-      w listingu obu aplikacji (i odwołuje się do niej formularz Data safety),
-- [ ] ujednolicić tekst UI `StartupPanel.tsx` (porada o module — dziś
-      deweloperska) z sekcją troubleshooting strony.
+## Checklist before going public
 
-## Podgląd lokalny
+- [ ] remove `<meta name="robots" content="noindex">` from **both** pages,
+- [ ] replace the "Download FSG SimBridge" button with the real release address
+      (span → `<a>`; look for `TODO` in `setup/index.html`),
+- [x] ~~verify the step 01 copy against the final installer (firewall, Community
+      package, "nothing to configure")~~ — done 2026-08-17: the page was audited
+      against the shipping installer and rewritten (firewall prompt is now a UAC
+      window, tray icon, autostart, self-updating, uninstall via Settings → Apps),
+- [ ] the Google Play links use the final `applicationId` — check after publishing,
+      and enable the App Store badges once iOS ships,
+- [x] ~~when attaching the domain: update `og:url`/`og:image`/`canonical` and the
+      href in `404.html`~~ — done 2026-08-14,
+- [ ] **privacy policy** at `/privacy/` — Google Play requires its address in both
+      app listings (and the Data safety form refers to it),
+- [ ] align the `StartupPanel.tsx` UI copy (the module advice is still the
+      developer-facing one) with the troubleshooting section of the site,
+- [ ] "iOS versions are planned but not available yet" in `setup/index.html`
+      contradicts the decision to ship iOS in v1 — decide before launch,
+- [ ] the "about two minutes" promise in the hero is the only number on the site
+      nobody measured; measure it or soften it.
+
+## Local preview
 
 ```bash
 npx serve . -l 5173
 ```
 
-(Otwarcie `index.html` z dysku też działa do prostych zmian.)
+(Opening `index.html` straight from disk also works for simple edits.)
 
-## Domena własna (później)
+## Custom domain (reference)
 
-Settings → Pages → Custom domain (`flightsimgeeks.com`) + rekordy DNS
-u rejestratora, na końcu „Enforce HTTPS". Przy publikacji przez Actions plik
-`CNAME` w repo nie jest potrzebny — domenę pamięta konfiguracja Pages.
-Relatywne odnośniki działają w obu układach bez zmian.
+Settings → Pages → Custom domain (`flightsimgeeks.com`) + DNS records at the
+registrar, then "Enforce HTTPS" at the end. When publishing through Actions the
+`CNAME` file in the repo is not needed — Pages remembers the domain in its own
+configuration. Relative links work in both layouts without changes.
