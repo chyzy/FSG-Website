@@ -72,11 +72,26 @@
           nothing to configure.
         </p>
         <p>
-          <!-- TODO przed startem: podmienić na <a class="btn btn-primary" href="…"> z docelowym
-               adresem pobierania (GitHub Releases / CDN). Opis kroku zakłada FINALNY instalator
-               (Velopack + hook Community) — zweryfikować te zdania na gotowej paczce. -->
-          <span class="btn btn-primary is-soon">Download FSG SimBridge</span>
+          <!-- Adres STAŁY: /releases/latest/download/ zawsze wskazuje najnowsze wydanie,
+               więc nie trzeba go ruszać przy kolejnych wersjach. Zmierzone 2026-08-17:
+               HTTP 206, bytes 0-0/126606223 po przekierowaniu na serwery załączników.
+               Nazwa pliku MUSI zgadzać się z tym, co produkuje vpk pack (build-release.ps1). -->
+          <a class="btn btn-primary"
+             href="https://github.com/chyzy/FSG-SimBridge/releases/latest/download/FsgSimBridge-win-Setup.exe">
+            Download FSG SimBridge
+          </a>
         </p>
+        <p class="fineprint">
+          Free · Windows 10/11 · about 120 MB ·
+          <a href="https://github.com/chyzy/FSG-SimBridge/releases">all versions</a>
+        </p>
+        <!-- DO USUNIĘCIA, gdy paczka będzie podpisana (Azure Trusted Signing). Dopóki nie jest,
+             SmartScreen blokuje uruchomienie i bez tego akapitu ludzie uznają instalator za
+             złośliwy i zrezygnują — patrz checklista w README. -->
+        <div class="callout">
+          <b>Windows will warn you about an unknown publisher.</b> We are having the installer
+          certified; until that is done, choose <b>More info</b> and then <b>Run anyway</b>.
+        </div>
         <div class="callout warn">
           <b>Windows asks for permission once — say yes.</b> That is the bridge asking to be
           let through the firewall so your tablet can reach this PC. Answer <b>No</b> and the

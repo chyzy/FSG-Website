@@ -75,8 +75,13 @@ vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
 ## Checklist before going public
 
 - [ ] remove `<meta name="robots" content="noindex">` from **both** pages,
-- [ ] replace the "Download FSG SimBridge" button with the real release address
-      (span → `<a>`; look for `TODO` in `setup/index.html`),
+- [x] ~~replace the "Download FSG SimBridge" button with the real release address~~ — done
+      2026-08-17: it points at
+      `https://github.com/chyzy/FSG-SimBridge/releases/latest/download/FsgSimBridge-win-Setup.exe`.
+      That path always resolves to the newest release, so it never needs changing again — but
+      the **file name must match what `build-release.ps1` produces**,
+- [ ] **remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
+      installer is code-signed — it only exists because SmartScreen blocks unsigned builds,
 - [x] ~~verify the step 01 copy against the final installer (firewall, Community
       package, "nothing to configure")~~ — done 2026-08-17: the page was audited
       against the shipping installer and rewritten (firewall prompt is now a UAC
