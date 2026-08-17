@@ -78,30 +78,13 @@
           <span class="btn btn-primary is-soon">Download FSG SimBridge</span>
         </p>
         <div class="callout warn">
-          <b>Windows asks for permission once — say yes.</b> The first time the bridge runs,
-          right after the install, Windows puts up a permission window. That is the bridge asking
-          to be let through the firewall so your tablet can reach this PC. Answer <b>No</b> and
-          nothing is damaged — but the app will never find your PC, and you will not be asked
-          again.
-        </div>
-        <p>
-          The installer also places the <b>FSG-Bridge package</b> into the simulator's
-          <b>Community folder</b>. That package is what lets the app drive the avionics knobs
-          (FMS, map range, NAV/COM tuning, volumes). If you have not installed or run the
-          simulator yet, the bridge simply adds it later, by itself.
-        </p>
-        <div class="callout">
-          <b>Install with the simulator closed.</b> Microsoft Flight Simulator 2024 reads
-          its packages only while starting up, so installing first means everything is in
-          place the moment you launch it. If the simulator happened to be running during
-          the install, nothing is broken — just <b>restart it once</b>.
+          <b>Windows asks for permission once — say yes.</b> That is the bridge asking to be
+          let through the firewall so your tablet can reach this PC. Answer <b>No</b> and the
+          app will never find your PC.
         </div>
         <div class="callout">
-          <b>A summary appears when it's done.</b> A few seconds after the install, the bridge
-          tells you what it set up: whether it starts with Windows, whether it is allowed through
-          the firewall, and whether the avionics module is in place. All ticks — you are finished
-          on the PC, and the bridge is already running. A <b>✗</b> means one of those did not
-          happen, and <a href="#troubleshooting">Troubleshooting</a> covers each case.
+          <b>Best with the simulator closed.</b> If it happened to be running during the
+          install, nothing is broken — just restart it once.
         </div>
       </div>
 
@@ -186,6 +169,22 @@
         </div>
       </div>
 
+      <!-- ── Koniec instalacji ──────────────────────────────────────── -->
+      <!-- Wyraźna meta strony: tu kończy się czytanie przy standardowej
+           instalacji. Wszystko niżej to materiał referencyjny. -->
+      <div class="guide-step" id="done">
+        <div class="setup-teaser">
+          <div>
+            <h2 class="mt-0">You're good to go ✓</h2>
+            <p class="teaser-lead">
+              That's the whole setup — you never do it again. The bridge starts with Windows,
+              keeps itself up to date, and the app reconnects on its own. Everything below is
+              reference for the day something looks off.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- ── Most na PC ─────────────────────────────────────────────── -->
       <!-- Sekcja referencyjna: co użytkownik zastaje na komputerze PO instalacji.
            Most nie ma okna ani konsoli, więc bez tego opisu nie ma jak stwierdzić,
@@ -227,25 +226,26 @@
 
         <h3>Updates look after themselves</h3>
         <p>
-          The bridge checks for new versions on its own and downloads them in the background. It
-          only swaps itself over when nobody is watching a panel and the simulator is
-          disconnected, so an update can never cut into a flight. You do not have to do anything
-          — and you should <b>not</b> download the installer again to update.
+          The bridge checks for new versions on its own and swaps itself over only when nobody
+          is watching a panel and the simulator is disconnected — an update can never cut into
+          a flight. Do not download the installer again to update; <b>Check for Updates</b> in
+          the icon menu asks the question right now, if you are curious.
         </p>
+
+        <h3>The avionics module</h3>
         <p>
-          <b>Check for Updates</b> in the icon menu simply asks the question right now, if you
-          are curious. The answer arrives as a short message over the icon.
+          During the install the bridge drops a small <b>FSG-Bridge package</b> into the
+          simulator's <b>Community folder</b> — that is what lets the app turn the avionics
+          knobs (FMS, map range, NAV/COM tuning, volumes). You never manage it: if the simulator
+          was not installed yet, or a repair wipes the Community folder, the bridge puts the
+          package back by itself.
         </p>
 
         <h3>Removing it</h3>
         <p>
-          Open <b>Settings → Apps</b>, find <b>FSG SimBridge</b> in the list of installed apps and
-          remove it the normal Windows way. It takes the <b>FSG-Bridge package</b> out of the
-          <b>Community folder</b> on the way out, so the simulator is left exactly as it was.
-        </p>
-        <p>
-          There is deliberately no “uninstall” in the icon menu. The bridge sits next to the clock
-          for days on end, and a one-click way to delete it there is a mistake waiting to happen.
+          Open <b>Settings → Apps</b>, find <b>FSG SimBridge</b> and remove it the normal
+          Windows way. It takes the FSG-Bridge package out of the Community folder on the way
+          out, so the simulator is left exactly as it was.
         </p>
         <p class="fineprint">
           Your saved PFD positions stay on the PC. Install the bridge again later and every
