@@ -77,9 +77,11 @@ vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
 - [ ] remove `<meta name="robots" content="noindex">` from **both** pages,
 - [x] ~~replace the "Download FSG SimBridge" button with the real release address~~ — done
       2026-08-17: it points at
-      `https://github.com/chyzy/FSG-SimBridge/releases/latest/download/FsgSimBridge-win-Setup.exe`.
+      `https://github.com/chyzy/FSG-SimBridge/releases/latest/download/FSG-SimBridge-Setup.exe`
+      (file renamed 2026-08-18, previously `FsgSimBridge-win-Setup.exe`).
       That path always resolves to the newest release, so it never needs changing again — but
-      the **file name must match what `build-release.ps1` produces**,
+      the **file name must match what `build-release.ps1` produces**, and the link stays broken
+      until the first release published under the new name,
 - [ ] **remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
       installer is code-signed — it only exists because SmartScreen blocks unsigned builds,
 - [x] ~~verify the step 01 copy against the final installer (firewall, Community
@@ -92,8 +94,10 @@ vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
       href in `404.html`~~ — done 2026-08-14,
 - [ ] **privacy policy** at `/privacy/` — Google Play requires its address in both
       app listings (and the Data safety form refers to it),
-- [ ] align the `StartupPanel.tsx` UI copy (the module advice is still the
-      developer-facing one) with the troubleshooting section of the site,
+- [x] ~~align the `StartupPanel.tsx` UI copy with the troubleshooting section of the site~~ —
+      done 2026-08-17: both now say the bridge restores the module by itself and the simulator
+      needs one restart. Neither tells the user to re-run the installer, because that advice
+      leads straight into the "existing application directory" error,
 - [ ] "iOS versions are planned but not available yet" in `setup/index.html`
       contradicts the decision to ship iOS in v1 — decide before launch,
 - [ ] the "about two minutes" promise in the hero is the only number on the site
