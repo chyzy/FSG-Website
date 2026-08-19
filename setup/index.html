@@ -311,9 +311,13 @@
                   will pick it up.</li>
               <li>Are both devices on the same network? A guest Wi-Fi or a mobile hotspot on
                   the tablet counts as a different network.</li>
-              <li>Did you answer <b>No</b> to the permission window during the install? Then the
-                  bridge never got through the firewall. See <b>“I said No to the permission
-                  window”</b> below.</li>
+              <li>Did you ever answer <b>No</b> to a Windows permission window about the
+                  bridge? Then the firewall is in the way. See <b>“I said No to a permission
+                  window”</b> below — the bridge detects this on every start and offers to
+                  fix it.</li>
+              <li>Not sure it's the firewall? Open <b>http://localhost:5100</b> in a browser
+                  <b>on the PC</b>. That page always works locally — and if the firewall is
+                  blocking the bridge, it says so right there.</li>
               <li>Some routers isolate wireless clients from each other (“AP isolation”/“client
                   isolation”). Either disable that, or use
                   <b>“Enter the address manually”</b> with the PC's IP.</li>
@@ -322,18 +326,31 @@
         </details>
 
         <details>
-          <summary>I said “No” to the permission window during the install</summary>
+          <summary>I said “No” to a permission window</summary>
           <div class="body">
             <p>
-              That window was the bridge asking to be let through Windows Firewall. Without it
-              your tablet cannot reach this PC — and the bridge does not ask again on later
-              starts, because a permission window at every sign-in is exactly the thing that
-              makes people turn a program off.
+              There are two windows you can say No to, and they break the same thing in
+              different ways:
+            </p>
+            <ul>
+              <li>the <b>admin window (UAC)</b> during the install — the bridge never got its
+                  firewall rule;</li>
+              <li>the <b>Windows Firewall prompt</b> the first time the bridge ran — Windows
+                  then silently adds <i>blocking</i> rules for the bridge. Blocking rules win
+                  over allowing ones, so the tablet cannot reach this PC even when everything
+                  looks correctly installed.</li>
+            </ul>
+            <p>
+              The fix is the same either way: <b>restart the bridge</b> (right-click its icon
+              next to the clock → <b>Close SimBridge</b>, start it again from the Start menu).
+              On every start the bridge inspects the firewall; when something is blocking it,
+              it shows a warning on the PC and asks for permission to repair — answer
+              <b>Yes</b> this time and it cleans up after the declined prompt by itself.
             </p>
             <p>
-              The clean fix: remove FSG SimBridge in <b>Settings → Apps</b>, install it again and
-              answer <b>Yes</b> this time. Your saved PFD positions survive that, so you lose
-              nothing but a minute.
+              You can also see the state for yourself: open <b>http://localhost:5100</b> in a
+              browser on the PC. If the firewall is blocking the bridge, the warning is printed
+              right on that page.
             </p>
           </div>
         </details>
