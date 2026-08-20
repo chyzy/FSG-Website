@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FlightSimGeeks | Privacy Policy</title>
   <meta name="description" content="Privacy policy for the FSG G1000 PFD and FSG G1000 MFD apps and the FSG SimBridge companion program. No accounts, no analytics, no data sent to us.">
-  <!-- noindex do usunięcia przy publicznym starcie razem z resztą stron. -->
-  <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0b0d10">
-  <!-- ⚠ Ten adres trafia do listingu obu aplikacji w Google Play i musi żyć tak długo,
-       jak aplikacje stoją w sklepie. Nie zmieniać ścieżki /privacy/. -->
+  <!-- Komplet og: ten adres jest wklejany w listingi sklepów i w odpowiedzi na pytania
+       o prywatność — bez tego udostępniony link pokazuje goły URL. -->
+  <meta property="og:site_name" content="FlightSimGeeks">
+  <meta property="og:title" content="Privacy Policy — FlightSimGeeks">
+  <meta property="og:description" content="No accounts, no analytics, no advertising: the FSG G1000 apps talk to one destination only — your own PC on your own network.">
+  <meta property="og:type" content="website">
+  <!-- ⚠ Ten adres trafia do listingu obu aplikacji w Google Play i w App Store i musi żyć
+       tak długo, jak aplikacje stoją w sklepach. Nie zmieniać ścieżki /privacy/. -->
   <meta property="og:url" content="https://flightsimgeeks.com/privacy/">
+  <meta property="og:image" content="https://flightsimgeeks.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The FSG G1000 PFD app: a live primary flight display framed by the touch bezel with knobs, softkeys and autopilot keys.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://flightsimgeeks.com/privacy/">
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -37,12 +46,12 @@
       <p class="kicker">Privacy Policy</p>
       <h1>We don't collect your data.</h1>
       <p class="lead">
-        This policy covers the <b>FSG G1000 PFD</b> and <b>FSG G1000 MFD</b> apps and the
-        <b>FSG SimBridge</b> companion program for Windows. The short version: there are no
-        accounts, no analytics and no advertising, and nothing you do in the apps is sent to
-        us — because we run no servers for them.
+        This policy covers the <b>FSG G1000 PFD</b> and <b>FSG G1000 MFD</b> apps — on
+        <b>Android and iOS</b> alike — and the <b>FSG SimBridge</b> companion program for
+        Windows. The short version: there are no accounts, no analytics and no advertising,
+        and nothing you do in the apps is sent to us — because we run no servers for them.
       </p>
-      <p class="fineprint">Last updated: 14 August 2026</p>
+      <p class="fineprint">Last updated: 20 August 2026</p>
     </div>
   </section>
 
@@ -86,12 +95,21 @@
           To find your PC, the apps use standard local network discovery (mDNS/DNS-SD). This
           asks devices on your own network to identify themselves; it does not reach the internet.
         </p>
+        <p>
+          <b>On iOS</b>, the system asks for permission to find and connect to devices on your
+          local network the first time you open the app. That prompt is what makes everything
+          above possible: it is used only to reach your own PC, and nothing about your network
+          is collected or sent anywhere. Decline it and the app cannot reach your PC at all —
+          not even if you type its address by hand, because iOS blocks local connections
+          without that permission.
+        </p>
         <div class="callout warn">
           <b>A note on encryption.</b> Traffic between the app and your PC is
           <b>not encrypted</b>. It stays inside your local network, but anyone already on
           that same network could in principle observe it. It contains instrument imagery
           and control commands — no personal data, no credentials. It is declared the same
-          way in the app's Data safety entry on Google Play.
+          way in the app's <b>Data safety</b> entry on Google Play and its <b>App Privacy</b>
+          entry on the App Store.
         </div>
       </div>
 
@@ -116,16 +134,21 @@
       <div class="guide-step">
         <h2><span class="no">05</span>Purchases</h2>
         <p>
-          The apps are sold through <b>Google Play</b>. Google is the merchant of record: it
-          handles the payment, and <b>we never see your payment details</b>. We receive from
-          Google only what any developer receives — aggregated sales and payout reporting.
-          Google's own handling of your data is described in the
-          <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.
+          The apps are sold through <b>Google Play</b> on Android and through the
+          <b>App Store</b> on iOS. The store is the merchant of record: it handles the payment,
+          and <b>we never see your payment details</b>. We receive from Google and Apple only
+          what any developer receives — aggregated sales and payout reporting, with no way to
+          identify an individual buyer. Their own handling of your data is described in the
+          <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>
+          and the
+          <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple Privacy Policy</a>.
         </p>
         <p>
-          Google Play may also collect crash reports and basic usage statistics as part of the
-          platform itself. <b>We add no analytics of our own</b> — the apps contain no tracking,
-          advertising or measurement libraries whatsoever.
+          Both platforms may also collect crash reports and basic usage statistics as part of the
+          platform itself — on iOS only if you have turned on <i>Share With App Developers</i> in
+          your device settings. <b>We add no analytics of our own</b> — the apps contain no
+          tracking, advertising or measurement libraries whatsoever, and we do not use Apple's
+          App Tracking Transparency framework because we do not track you.
         </p>
       </div>
 
@@ -168,7 +191,7 @@
           If the apps ever start processing data differently — for example if a future version
           adds an online feature — this page will be updated before that version ships, and the
           date at the top will change. Material changes will also be noted in the app's release
-          notes on Google Play.
+          notes on Google Play and the App Store.
         </p>
       </div>
 

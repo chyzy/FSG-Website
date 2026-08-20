@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FlightSimGeeks</title>
+  <!-- Tytuł to nagłówek wyniku w Google — musi nieść produkt, nie samą markę.
+       Markę dokłada wyszukiwarka z og:site_name. -->
+  <title>FSG G1000 — your simulator's G1000, on your tablet</title>
   <meta name="description" content="FSG G1000 PFD and MFD put the simulator's Garmin G1000 on your tablet — 1:1 and live, in a faithful bezel with working knobs, softkeys and autopilot keys. For Microsoft Flight Simulator 2024.">
-  <!-- noindex do usunięcia przy publicznym starcie (apki jeszcze nie są w sklepach). -->
-  <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0b0d10">
+  <meta property="og:site_name" content="FlightSimGeeks">
   <meta property="og:title" content="FSG G1000 — your simulator's G1000, on your tablet">
   <meta property="og:description" content="The simulator's G1000 — 1:1 and live on your tablet, with working knobs, softkeys and autopilot keys. For Microsoft Flight Simulator 2024.">
   <meta property="og:type" content="website">
   <!-- og/canonical muszą być absolutne (to metadane, nie zasoby) — stąd pełna domena. -->
   <meta property="og:url" content="https://flightsimgeeks.com/">
   <meta property="og:image" content="https://flightsimgeeks.com/assets/img/og-image.jpg">
+  <!-- Wymiary podane wprost: bez nich Discord i Slack najpierw pobierają obrazek,
+       żeby je zmierzyć, i karta potrafi nie zdążyć się pokazać. -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The FSG G1000 PFD app: a live primary flight display framed by the touch bezel with knobs, softkeys and autopilot keys.">
+  <!-- Bez twitter:card X pokazuje małą kartę mimo poprawnego og:image. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="The FSG G1000 PFD app: a live primary flight display framed by the touch bezel with knobs, softkeys and autopilot keys.">
   <link rel="canonical" href="https://flightsimgeeks.com/">
   <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">

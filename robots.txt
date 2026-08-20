@@ -1,0 +1,11 @@
+# flightsimgeeks.com — cały serwis jest publiczny i ma być indeksowany.
+#
+# Świadomie NIE blokujemy tu /fsg-bridge/setup/ ani /404.html: obie strony niosą
+# własny <meta name="robots" content="noindex">, a wyszukiwarka honoruje noindex
+# tylko wtedy, gdy wolno jej stronę pobrać. Disallow zamknąłby jej oczy i adresy
+# mogłyby wylądować w indeksie mimo wszystko.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://flightsimgeeks.com/sitemap.xml

@@ -87,10 +87,16 @@ code, kbd {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 0.12em 0.42em;
-  white-space: nowrap;
 }
 
-kbd { border-bottom-width: 2px; }
+/* Klawisz to zawsze jeden krótki token — nigdy się nie łamie. */
+kbd { white-space: nowrap; border-bottom-width: 2px; }
+
+/* Kod też zostaje w jednej linii, dopóki się mieści: break-word dzieli słowo dopiero
+   wtedy, gdy inaczej wypchnęłoby stronę w bok. Robiła to ścieżka
+   %LOCALAPPDATA%\FlightSimGeeks\FSG w polityce prywatności przy 320px. Krótkie tokeny
+   (192.168.0.17, ipconfig) mieszczą się zawsze, więc nigdy nie są dzielone. */
+code { overflow-wrap: break-word; }
 
 .container {
   max-width: var(--container);
@@ -289,10 +295,13 @@ h2 {
 
 /* ── Karty features ────────────────────────────────────────────────────── */
 
+/* min(…, 100%) w każdej siatce: bez tego auto-fit wymusza tor szerszy niż kontener
+   i strona dostaje poziomy pasek przewijania na wąskim telefonie (karty produktów
+   robiły to przy 320px). Powyżej progu układ jest identyczny co do piksela. */
 .grid {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
 }
 /* Sześć kart features: na szerokim ekranie 3+3 zamiast 4+2. */
 @media (min-width: 1100px) {
@@ -323,7 +332,7 @@ h2 {
 .steps {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   counter-reset: step;
 }
 
@@ -353,7 +362,7 @@ h2 {
 .stats {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   text-align: center;
 }
 
@@ -379,7 +388,7 @@ h2 {
 .products {
   display: grid;
   gap: 22px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 }
 
 .product {
@@ -604,6 +613,45 @@ footer {
 @media (max-width: 640px) {
   .hero { padding: 56px 0 28px; }
   section { padding: 48px 0; }
-  .nav-links { gap: 14px; font-size: 14px; }
-  .nav-links a:not(.nav-cta):not(:last-child) { display: none; }
+}
+
+/* ── Nawigacja na wąskich ekranach ─────────────────────────────────────── */
+
+/* Próg 760px jest wyliczony, nie okrągły: tyle potrzebuje najszerszy pasek strony
+   (setup — marka 171 + odstęp 28 + odnośniki 499 + marginesy kontenera). Poniżej
+   desktopowy układ ściskał odnośniki tak, że CTA łamało się na dwie linie i wystawało
+   poza kontener, a niżej — do 640px — odnośniki sekcji były po prostu chowane
+   (display: none) i na telefonie nie było jak dojść do FAQ inaczej niż scrollem przez
+   całą stronę. Zamiast obu tych zachowań: pasek przewijany w poziomie. */
+@media (max-width: 760px) {
+  .nav-inner { gap: 14px; }
+  .nav-links {
+    gap: 16px;
+    font-size: 14px;
+    min-width: 0;              /* bez tego flex nie pozwoli paskowi zwęzić się pod overflow */
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;     /* pasek przewijania psułby 62-pikselowy nagłówek */
+    padding: 10px 0;           /* miejsce na obwódkę :focus-visible, którą overflow by ucięło */
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { white-space: nowrap; }
+
+  /* CTA nie może odjechać razem z resztą — na wąskim ekranie pasek pokazuje ledwie
+     dwa odnośniki naraz, a to jest ten jeden, który musi być pod kciukiem zawsze.
+     Zostaje przyklejony do prawej krawędzi; tło musi być kryjące, bo linki
+     przewijają się pod spodem. */
+  .nav-links a.nav-cta {
+    position: sticky;
+    right: 0;
+    background: var(--bg);
+  }
+}
+
+/* Na telefonie w pionie sam napis "FlightSimGeeks" bierze 171 z 272 dostępnych pikseli
+   i najdłuższe CTA (setup: "Troubleshooting", 130px) przestaje się mieścić. Próg 430px
+   też jest z sumy: marka + odstęp + CTA + marginesy kontenera. Poniżej zostaje sam
+   znak — dalej prowadzi na stronę główną, a markę niesie nagłówek strony i stopka. */
+@media (max-width: 430px) {
+  .brand span { display: none; }
 }
