@@ -416,6 +416,10 @@ h2 {
 .product h3 { margin: 0; font-size: 1.35rem; letter-spacing: -0.015em; }
 .product p { margin: 0; color: var(--text-dim); font-size: 15.5px; flex-grow: 1; }
 .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+/* Druga listwa odznak (App Store pod Google Play na stronie setup): cztery odznaki
+   w jednym rzędzie nie mieszczą się w 820 px kolumny instrukcji i zawijają 3+1,
+   co rozrywa grupowanie po sklepach — stąd dwa rzędy z odstępem równym gapowi. */
+.badges + .badges { margin-top: 10px; }
 .product img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #000; }
 .product .product-icon { width: 64px; height: 64px; border: 0; background: none; }
 

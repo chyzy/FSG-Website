@@ -235,7 +235,8 @@
         <h2>Two displays. Two apps.</h2>
         <p>
           Run the PFD on one device, the MFD on another — both perfectly smooth, from
-          one simulator. Buy only what your panel needs.
+          one simulator. Buy only what your panel needs; both apps run on Android and
+          on iPad.
         </p>
       </div>
       <div class="products">
@@ -258,11 +259,12 @@
               <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden="true"><path d="M1.6.9C1.2 1.3 1 1.9 1 2.7v18.6c0 .8.2 1.4.6 1.8l.1.1 10.4-10.4v-.2L1.7.8l-.1.1Z" fill="#6ec1ff"/><path d="M15.6 16.3 12.1 12.8v-.2l3.5-3.5.1.1 4.1 2.3c1.2.7 1.2 1.8 0 2.5l-4.1 2.3h-.1Z" fill="#ffc61a"/><path d="m15.7 16.2-3.6-3.6L1.6 23.1c.4.4 1 .5 1.8.1l12.3-7Z" fill="#6ee38a"/><path d="M15.7 7.8 3.4.8C2.6.4 2 .5 1.6.9l10.5 10.5 3.6-3.6Z" fill="#f26a6a"/></svg>
               <span><span class="small">Get it on</span><span class="big">Google Play</span></span>
             </a>
-            <!-- TODO: odblokować, gdy wersja iOS będzie w App Store. -->
-            <span class="store-badge is-soon" title="Coming later">
+            <!-- TODO przed startem: App Store nie ma adresu po bundle id — w miejsce
+                 APPSTORE-ID-PFD wstawić numeryczne ID aplikacji z App Store Connect. -->
+            <a class="store-badge" href="https://apps.apple.com/app/idAPPSTORE-ID-PFD">
               <svg width="22" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true"><path d="M18.1 13.8c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.1 1.5 12.1 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 4-1s2.4 1 4 1 2.7-1.5 3.7-2.9c1.2-1.7 1.6-3.3 1.7-3.4-.1 0-3.2-1.3-3.3-4.9ZM15 4.9c.8-1 1.4-2.4 1.2-3.9-1.2.1-2.7.8-3.6 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.7-1.8Z"/></svg>
-              <span><span class="small">Not yet on the</span><span class="big">App Store</span></span>
-            </span>
+              <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+            </a>
           </div>
         </article>
 
@@ -285,10 +287,11 @@
               <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden="true"><path d="M1.6.9C1.2 1.3 1 1.9 1 2.7v18.6c0 .8.2 1.4.6 1.8l.1.1 10.4-10.4v-.2L1.7.8l-.1.1Z" fill="#6ec1ff"/><path d="M15.6 16.3 12.1 12.8v-.2l3.5-3.5.1.1 4.1 2.3c1.2.7 1.2 1.8 0 2.5l-4.1 2.3h-.1Z" fill="#ffc61a"/><path d="m15.7 16.2-3.6-3.6L1.6 23.1c.4.4 1 .5 1.8.1l12.3-7Z" fill="#6ee38a"/><path d="M15.7 7.8 3.4.8C2.6.4 2 .5 1.6.9l10.5 10.5 3.6-3.6Z" fill="#f26a6a"/></svg>
               <span><span class="small">Get it on</span><span class="big">Google Play</span></span>
             </a>
-            <span class="store-badge is-soon" title="Coming later">
+            <!-- TODO przed startem: jak wyżej — numeryczne ID MFD z App Store Connect. -->
+            <a class="store-badge" href="https://apps.apple.com/app/idAPPSTORE-ID-MFD">
               <svg width="22" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true"><path d="M18.1 13.8c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.1 1.5 12.1 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 4-1s2.4 1 4 1 2.7-1.5 3.7-2.9c1.2-1.7 1.6-3.3 1.7-3.4-.1 0-3.2-1.3-3.3-4.9ZM15 4.9c.8-1 1.4-2.4 1.2-3.9-1.2.1-2.7.8-3.6 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.7-1.8Z"/></svg>
-              <span><span class="small">Not yet on the</span><span class="big">App Store</span></span>
-            </span>
+              <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+            </a>
           </div>
         </article>
       </div>
@@ -348,7 +351,13 @@
         <summary>Is there an iPhone/iPad version?</summary>
         <div class="body">
           <p>
-            Android first — an iOS version is planned but not available yet.
+            <b>iPad — yes.</b> The same two apps are on the App Store, they work exactly as
+            described on this page, and one bridge on your PC serves an iPad and an Android
+            tablet side by side. You need iPadOS&nbsp;15 or later.
+          </p>
+          <p>
+            <b>iPhone — no.</b> The G1000 bezel needs a tablet-sized screen for the knobs and
+            softkeys to stay usable, so the App Store version is iPad-only.
           </p>
         </div>
       </details>

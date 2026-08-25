@@ -49,6 +49,13 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   `fsg-simbridge` (the process), "FSG-Bridge package" in the "Community folder"
   (the module), "FSG G1000 PFD" / "FSG G1000 MFD" (the apps), always the full
   "Microsoft Flight Simulator 2024".
+- **Platforms: Android 7 or later, iOS is iPad only** (`minSdkVersion = 24`;
+  `TARGETED_DEVICE_FAMILY = 2` with landscape-only orientations and `UIRequiresFullScreen`) —
+  **never write that iPhone is supported.** Source: `docs/aplikacje-sklepowe.md`
+  §"Decyzje produktowe iOS" in the FSG-G1000 repo. The Android build carries no screen-size
+  restriction, so it installs on phones and the checklist in `setup/index.html` still says
+  "tablet or phone" — but there is no phone layout (both attempts were rejected on
+  2026-08-20), so **do not promote phones anywhere else on the site** until that is decided.
 - **Measured numbers only.** Sources: the README and `docs/` of the FSG-G1000 repo.
   The site went through a fact-by-fact review on 2026-08-13; do not add promises
   that nobody measured.
@@ -83,24 +90,37 @@ vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
 
 Still open:
 
-- [ ] **the Google Play links 404** — verified again 2026-08-20 for both
-      `com.flightsimgeeks.g1000.pfd` and `…mfd`. Four links wait on publication:
-      two in `index.html`, two in `setup/index.html`. Confirm the final `applicationId`
-      at the same time,
+- [ ] **neither store link resolves yet — eight links in two files.**
+      *Google Play* (four): verified again 2026-08-20 for both `com.flightsimgeeks.g1000.pfd`
+      and `…mfd`; the addresses are final and start working the moment the apps go live, so
+      they only wait on publication — confirm the final `applicationId` at the same time.
+      *App Store* (four): the `idAPPSTORE-ID-{PFD,MFD}` placeholders **are not addresses and
+      never will be** — Apple has no URL by bundle id, so each has to be replaced with the
+      app's numeric ID from App Store Connect. Two of each are in `index.html`, two of each
+      in `setup/index.html`,
 - [ ] **remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
       installer is code-signed — it only exists because SmartScreen blocks unsigned builds,
-- [ ] **iOS says two different things.** The privacy policy now covers iOS (Apple as merchant
-      of record, the local-network permission, App Privacy labels), but five places still tell
-      the reader iOS does not exist: the two `is-soon` App Store badges and the FAQ entry in
-      `index.html`, and the fineprint plus the "Android tablet or phone" checklist item in
-      `setup/index.html`. One decision, five edits,
 - [ ] the "about two minutes" promise is the only number on the site nobody measured;
       measure it or soften it. Four places: the hero button in `index.html`, and the `<h1>`
       lead, `description` and `og:description` in `setup/index.html`,
-- [ ] no price anywhere on the site, although the copy says "buy only what your panel needs".
+- [ ] no price anywhere on the site, although the copy says "buy only what your panel needs",
+- [ ] **does Android still promise phones?** The pre-flight checklist in `setup/index.html`
+      says "An Android tablet or phone", while the reason the site gives for having no iPhone
+      version is that the bezel needs a tablet-sized screen. Both cannot stay: either the
+      checklist drops the phone, or the site explains why a phone is fine on Android and not
+      on iOS. Decide together with the phone layout (rejected 2026-08-20).
 
 Done:
 
+- [x] ~~**iOS says two different things**~~ — done 2026-08-26: the site now presents iOS as
+      shipping alongside Android, everywhere. `index.html`: the two `is-soon` App Store badges
+      became real links, the products lead says "Android and iPad", and the FAQ entry answers
+      "iPad yes, iPhone no" with both minimum OS versions. `setup/index.html`: the checklist item
+      names both platforms, step 02 gained a second badge row for the App Store and a fineprint
+      with the OS requirements instead of "iOS versions are planned", and the iPadOS
+      **local-network permission** is now covered in step 03 and in the "can't find my PC"
+      troubleshooting (declining it looks exactly like a network fault). One CSS rule added:
+      `.badges + .badges` — four badges do not fit one row in the 820 px guide column,
 - [x] ~~remove `<meta name="robots" content="noindex">`~~ — done 2026-08-20 on all three
       indexable pages. It **stays** in `404.html` and in the `/fsg-bridge/setup/` stub, where
       it is intentional,
