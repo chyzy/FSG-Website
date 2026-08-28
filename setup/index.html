@@ -75,6 +75,14 @@
           Download it on the PC that runs the simulator and run the installer — there is
           nothing to configure.
         </p>
+        <!-- NAD przyciskiem, nie pod nim: to jedyna rada z tego kroku, którą trzeba wykonać
+             PRZED kliknięciem. Pod przyciskiem stała za dwiema innymi ramkami i czytał ją
+             dopiero ten, kto już zainstalował — czyli dokładnie za późno. -->
+        <div class="callout">
+          <b>Close Microsoft Flight Simulator first.</b> The bridge installs a module that the
+          simulator only picks up while starting. If it was already running, nothing is
+          broken — restart it once afterwards.
+        </div>
         <p>
           <!-- Adres STAŁY: /releases/latest/download/ zawsze wskazuje najnowsze wydanie,
                więc nie trzeba go ruszać przy kolejnych wersjach. Zmierzone 2026-08-17 pod
@@ -102,10 +110,6 @@
           <b>Windows asks for permission once — say yes.</b> That is the bridge asking to be
           let through the firewall so your tablet can reach this PC. Answer <b>No</b> and the
           app will never find your PC.
-        </div>
-        <div class="callout">
-          <b>Best with the simulator closed.</b> If it happened to be running during the
-          install, nothing is broken — just restart it once.
         </div>
       </div>
 
@@ -165,12 +169,32 @@
         </div>
         <p>
           Nothing showing up? The app rescans every ten seconds or so — give it a moment
-          first. If your router isolates Wi-Fi devices from each other, or your PC and
-          tablet sit on different subnets of the same home network, tap
-          <b>“Enter the address manually”</b> and type the PC's local IP address, for example
-          <code>192.168.0.17</code>. You can read that address on the PC: press
-          <kbd>Win</kbd>+<kbd>R</kbd>, run <code>cmd</code>, type <code>ipconfig</code> and
-          look for “IPv4 Address”.
+          first. If it still finds nothing, it is almost always one of two things, and they
+          need different fixes.
+        </p>
+        <p>
+          <b>Your PC and tablet are on different subnets</b> — a mesh system, a second
+          router, or a separate network for guests or smart-home devices. Two steps here,
+          and both are needed. First, tap <b>“Enter the address manually”</b> and type the
+          PC's local IP address, for example <code>192.168.0.17</code>: automatic discovery
+          does not travel between subnets. Second, widen the bridge's firewall rule, which
+          by default accepts only your PC's own subnet — press
+          <kbd>Win</kbd>+<kbd>R</kbd>, run <code>wf.msc</code>, open <b>Inbound Rules</b>,
+          find <b>FSG SimBridge</b>, then <b>Properties → Scope</b> and set
+          <b>Remote IP address</b> to <b>Any IP address</b>.
+        </p>
+        <p>
+          <b>Your router keeps wireless devices apart</b> — usually called AP isolation,
+          client isolation, or a guest network. Nothing on the PC will fix this, and typing
+          the address by hand will not help either: the traffic is stopped at the router.
+          Turn that setting off, or put both the PC and the tablet on the main network
+          instead of the guest one.
+        </p>
+        <p>
+          To read the PC's address: press <kbd>Win</kbd>+<kbd>R</kbd>, run <code>cmd</code>,
+          type <code>ipconfig</code> and look for “IPv4 Address”. If several are listed, you
+          want the one that starts with <code>192.168</code> or <code>10.</code> — the others
+          usually belong to virtual adapters.
         </p>
       </div>
 
@@ -382,8 +406,10 @@
             <p>
               Said No to the repair prompt as well? The bridge stops asking — a permission
               window at every sign-in would be worse than the problem. The warning window
-              stays, and it shows a one-line command to run as administrator; reinstalling
-              the bridge and answering <b>Yes</b> works too.
+              stays, with a <b>Fix firewall</b> button: press it whenever you are ready and
+              Windows asks for administrator rights once more. If that still does not help,
+              the window then shows the exact command to run as administrator, ready to
+              select and copy. Reinstalling the bridge and answering <b>Yes</b> works too.
             </p>
             <p>
               You can also see the state for yourself: open <b>http://localhost:5750</b> in a
