@@ -78,13 +78,17 @@ The screenshots come from the live app connected to the simulator (C172, MSFS 20
    (in the FSG-G1000 repo; client built with `cd client && npm run build && npm run build:mfd`),
 2. load a flight and wait for the popouts to come up (`/api/status`),
 3. capture with playwright-core + the system Edge (viewport 1280×800,
-   deviceScaleFactor 2) from `http://localhost:5100/pfd/` and `/mfd/`, then convert
-   canvas→WebP q0.85. The scripts live in the Claude session history; to recreate
-   them: `shot.js` + `convert.js`.
+   deviceScaleFactor 2), then convert canvas→WebP q0.85.
+
+Step 3 is no longer a scratch script: it lives in the FSG-G1000 repo as
+`store/capture-live.js` and writes `store/captures/live-{pfd,mfd}.webp` at 2560×1600 —
+the same format as `app-*.webp` here, so its output can be copied straight over these
+files when the site images are the ones being refreshed.
 
 ⚠ Since 2026-08-16 the bridge **no longer serves the client**, so
-`http://localhost:5100/pfd/` returns 404. New screenshots have to come from the
-vite dev server (`cd client && npm run dev`) or from the native app on a tablet.
+`http://localhost:5750/pfd/` returns 404. New screenshots have to come from the vite
+dev servers (`.claude/launch.json` → `g1000-client` on 5174, `g1000-client-mfd` on 5175,
+which is what `capture-live.js` expects) or from the native app on a tablet.
 
 ## Checklist before going public
 
