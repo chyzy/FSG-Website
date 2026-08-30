@@ -594,6 +594,35 @@ footer {
 .setup-teaser .teaser-lead { color: var(--text-dim); max-width: 52ch; margin: 0; }
 .setup-teaser .btn { flex: none; }
 
+/* ── Strona /support: kanały kontaktu ──────────────────────────────────── */
+
+/* Dwie karty obok siebie w 820-pikselowej kolumnie instrukcji, jedna pod drugą
+   poniżej ~640px. Nie .grid: tamta siatka od 1100px wymusza trzy równe kolumny
+   (sześć kart features), więc przy dwóch kartach zostawiałaby pustą trzecią. */
+.channels {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  margin: 8px 0 34px;
+}
+
+/* Przycisk zawsze na dole karty — inaczej dłuższy opis Discorda przesuwa jego
+   przycisk niżej niż przycisk e-maila i para przestaje wyglądać jak wybór. */
+.channels .card { display: flex; flex-direction: column; }
+.channels .card h3 { font-size: 1.25rem; }
+.channels .card p { margin: 0 0 18px; }
+.channels .card .btn { margin-top: auto; align-self: flex-start; }
+.channels .card .fineprint { margin: 12px 0 0; }
+
+/* Karta preferowana dostaje tę samą poświatę co zajawka instrukcji — jedyny
+   sygnał "tędy", poza żółtym przyciskiem. */
+.channels .card.is-preferred {
+  border-color: var(--border-bright);
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(224, 200, 143, 0.07), transparent 70%),
+    var(--bg-card);
+}
+
 /* ── Stopka: kontakt i znaki towarowe ──────────────────────────────────── */
 
 .footer-inner .trademark { max-width: 52ch; }

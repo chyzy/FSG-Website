@@ -9,6 +9,7 @@ whatever sits in the repository root is served as-is.
 |------|------------|
 | `index.html` | home page: hero, measured numbers, how it works, features, aircraft, PFD/MFD products, FAQ |
 | `setup/index.html` | setup guide — **this address is compiled into the mobile app** (`BRIDGE_SETUP_URL` in `client/src/config/product.ts` of the FSG-G1000 repo). The `/setup` path has to keep working for years (shortened from `/fsg-bridge/setup` on 2026-08-16). |
+| `support/index.html` | support page: the two channels (Discord first, `support@flightsimgeeks.com` second), what to try first, what to put in the message, purchases/refunds |
 | `fsg-bridge/setup/index.html` | redirect stub pointing at `/setup/` — the old address is baked into pre-release builds of the app; delete once those are gone |
 | `assets/site.css` | the only stylesheet; palette taken from the app (logo yellow `#ffc61a`, background `#0b0d10`, MFD magenta `#f531e0`) |
 | `assets/img/icon-*.svg` | app icons converted 1:1 from the Android vector drawables (`client/android/app/src/*/res/drawable/`) — fix them there, fix them here |
@@ -16,7 +17,7 @@ whatever sits in the repository root is served as-is.
 | `assets/img/og-image.jpg` | 1200×630 crop for link cards (Discord, forums) |
 | `404.html` | inline styles — Pages serves it from any path, so it must not depend on relative paths |
 | `robots.txt` | everything crawlable; points at the sitemap. Deliberately does **not** `Disallow` the 404 page or the redirect stub — a crawler honours `noindex` only on pages it is allowed to fetch |
-| `sitemap.xml` | the three indexable pages. Bump `lastmod` when a page's content changes |
+| `sitemap.xml` | the four indexable pages. Bump `lastmod` when a page's content changes |
 
 ## How it is published
 
@@ -63,7 +64,14 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   scrolls horizontally with the CTA pinned right; below `430px` the wordmark drops and only
   the mark remains. Both numbers come from the widest bar on the site — the setup guide's
   (brand 171 + gap 28 + links 499 + container padding). **Add or rename a nav link and they
-  have to be recomputed**, otherwise the CTA starts getting clipped again.
+  have to be recomputed**, otherwise the CTA starts getting clipped again. Measured again in the
+  browser on 2026-08-31, after "Support" joined the home and privacy bars: home links 476,
+  support 374, privacy 247 — all still under the setup guide's 499.7, so the widest bar did not
+  move and both thresholds stand.
+- **Two addresses, two jobs.** `support@flightsimgeeks.com` is help with the apps: it lives on
+  `/support/` and in the setup guide's "Still stuck?" teaser. `contact@flightsimgeeks.com` is the
+  business address — the footer of every page and the data-controller entry in the privacy
+  policy. Do not merge them: the second one is in store listings and legal text.
 - **Write for the user, not for us.** No file names, process names, registry keys
   or command-line switches on the page — those belong in the FSG-G1000 docs. The
   four numbered steps carry only what the reader has to *do*; everything else is
@@ -104,6 +112,11 @@ Still open:
       in `setup/index.html`,
 - [ ] **remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
       installer is code-signed — it only exists because SmartScreen blocks unsigned builds,
+- [ ] **the two support channels have to be alive before launch**: `support@flightsimgeeks.com`
+      must actually deliver somewhere (it is on `/support/` and in the setup guide's teaser),
+      and the Discord invite `sT5G3rSq7q` must be set to **never expire** with no use limit —
+      a temporary invite quietly kills the channel the site calls the fastest one. Three places
+      link it: `support/index.html` (nav CTA + card), `setup/index.html` (teaser),
 - [ ] the "about two minutes" promise is the only number on the site nobody measured;
       measure it or soften it. Four places: the hero button in `index.html`, and the `<h1>`
       lead, `description` and `og:description` in `setup/index.html`,
@@ -148,9 +161,11 @@ Done:
       done 2026-08-17: both now say the bridge restores the module by itself and the simulator
       needs one restart. Neither tells the user to re-run the installer, because that advice
       leads straight into the "existing application directory" error,
-- [x] ~~decide the support channel~~ — e-mail only (`contact@flightsimgeeks.com`), no Discord
-      at launch. The address appears in the footer of every page, in the setup guide and in the
-      privacy policy — changing it means all three,
+- [x] ~~decide the support channel~~ — **changed 2026-08-31**: Discord first
+      (`https://discord.gg/sT5G3rSq7q`), `support@flightsimgeeks.com` second. Everything about
+      the channels lives on `/support/`; the setup guide's "Still stuck?" teaser only points
+      there, so the next change of channel is one page, not three. The earlier decision
+      (e-mail only, `contact@`, no Discord at launch) no longer holds,
 - [x] ~~link cards and indexing~~ — done 2026-08-20: `robots.txt` + `sitemap.xml`,
       `og:site_name`, `og:image:width/height`, `og:image:alt` and `twitter:card` on all three
       pages, a full `og:` set on `/privacy/` (it is the address pasted into store listings),

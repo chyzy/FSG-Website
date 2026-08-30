@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Trzy strony, które mają być w wynikach. Celowo bez /404.html i bez stubu
+<!-- Cztery strony, które mają być w wynikach. Celowo bez /404.html i bez stubu
      /fsg-bridge/setup/ (przekierowanie). Bez changefreq i priority — Google ich
      nie czyta. lastmod aktualizować przy zmianie treści strony. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://flightsimgeeks.com/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://flightsimgeeks.com/setup/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://flightsimgeeks.com/support/</loc>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://flightsimgeeks.com/privacy/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
 </urlset>
