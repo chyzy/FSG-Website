@@ -115,8 +115,11 @@ Still open:
       never will be** — Apple has no URL by bundle id, so each has to be replaced with the
       app's numeric ID from App Store Connect. Two of each are in `index.html`, two of each
       in `setup/index.html`,
-- [ ] **remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
-      installer is code-signed — it only exists because SmartScreen blocks unsigned builds,
+- [x] ~~**remove the "unknown publisher" callout** from step 01 of `setup/index.html` once the
+      installer is code-signed~~ — done 2026-09-05 with release 0.9.3, the first one signed
+      through Azure Trusted Signing (`CN=Badisoft Bartosz Chyży`, issued by Microsoft ID
+      Verified CS AOC CA 03, timestamped). The download size in the same step was corrected at
+      the same time: measured **97 MB** on the permanent link, where the page had said 120,
 - [ ] **the two support channels have to be alive before launch**: `support@flightsimgeeks.com`
       must actually deliver somewhere (it is on `/support/` and in the setup guide's teaser),
       and the Discord invite `sT5G3rSq7q` must be set to **never expire** with no use limit —
