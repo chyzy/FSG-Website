@@ -1,26 +1,17 @@
-/* FlightSimGeeks — wspólny arkusz obu stron.
-   Świadomie jeden, ciemny motyw: produkt to nocny kokpit (czarny bezel G1000),
-   strona ma wyglądać jak jego przedłużenie. Zero zewnętrznych zależności —
-   fonty systemowe, wszystko w tym pliku. */
+
 
 :root {
-  /* Tła: dokładnie rodzina aplikacji — splash/bezel to #0B0D10 (fsg_colors.xml),
-     ekrany startowe grają odcieniami #07080a–#14161c. */
+
   --bg: #0b0d10;
   --bg-elev: #101319;
   --bg-card: #14171e;
   --border: #23262e;
   --border-bright: #343945;
 
-  /* Tekst — wartości z ekranów startowych aplikacji (styles.css klienta). */
   --text: #f2f3f5;
   --text-dim: #c3c6ce;
   --muted: #7d828e;
 
-  /* Akcenty żywcem z aplikacji: #FFC61A (znak PFD, logo, favicon), magenta #F531E0
-     (znak MFD), błękit #6ec1ff (odnośniki), zieleń #6ee38a (stan ready).
-     Strona ma dokładnie jedną żółć — kanarkową ze znaku; --accent-strong to jej
-     jaśniejszy odcień na hover, nie osobny kolor. */
   --accent: #ffc61a;
   --accent-strong: #ffd65c;
   --link: #6ec1ff;
@@ -30,7 +21,7 @@
 
   --radius: 14px;
   --radius-sm: 9px;
-  /* 1080 wyglądało biednie na monitorach 21:9 — strona ma oddychać na szerokich ekranach. */
+
   --container: 1360px;
 
   --font: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -43,10 +34,8 @@
   html { scroll-behavior: smooth; }
 }
 
-/* Kotwice nie mogą chować nagłówka pod przyklejonym paskiem nawigacji (62px). */
 [id] { scroll-margin-top: 78px; }
 
-/* Widoczny fokus dla klawiatury — domyślna obwódka UA ginie na tym tle. */
 :is(a, button, summary):focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 2px;
@@ -63,7 +52,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Delikatna poświata u góry strony — jedyny "efekt", reszta to typografia. */
 body::before {
   content: "";
   position: fixed;
@@ -89,13 +77,8 @@ code, kbd {
   padding: 0.12em 0.42em;
 }
 
-/* Klawisz to zawsze jeden krótki token — nigdy się nie łamie. */
 kbd { white-space: nowrap; border-bottom-width: 2px; }
 
-/* Kod też zostaje w jednej linii, dopóki się mieści: break-word dzieli słowo dopiero
-   wtedy, gdy inaczej wypchnęłoby stronę w bok. Robiła to ścieżka
-   %LOCALAPPDATA%\FlightSimGeeks\FSG w polityce prywatności przy 320px. Krótkie tokeny
-   (192.168.0.17, ipconfig) mieszczą się zawsze, więc nigdy nie są dzielone. */
 code { overflow-wrap: break-word; }
 
 .container {
@@ -103,8 +86,6 @@ code { overflow-wrap: break-word; }
   margin: 0 auto;
   padding: 0 clamp(24px, 4vw, 48px);
 }
-
-/* ── Nawigacja ─────────────────────────────────────────────────────────── */
 
 .nav {
   position: sticky;
@@ -152,10 +133,6 @@ code { overflow-wrap: break-word; }
 }
 .nav-links a.nav-cta:hover { border-color: var(--accent); }
 
-/* ── Hero ──────────────────────────────────────────────────────────────── */
-
-/* Hero jest wyśrodkowany: urządzenia pod spodem są symetryczne, więc tekst
-   dosunięty do lewej robił nierównowagę na szerokich ekranach. */
 .hero { padding: 84px 0 40px; text-align: center; }
 
 .hero h1 {
@@ -175,7 +152,7 @@ code { overflow-wrap: break-word; }
 .hero .lead {
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   color: var(--text-dim);
-  /* Co najmniej szerokość akapitów sekcji (720px) — na dużych ekranach więcej. */
+
   max-width: 72ch;
   margin: 0 auto 32px;
 }
@@ -188,9 +165,6 @@ code { overflow-wrap: break-word; }
   justify-content: center;
 }
 
-/* Wizual pod hero: dwa urządzenia (PFD + MFD) obok siebie na szerokich ekranach,
-   jedno pod drugim na wąskich. Ma własny, dużo szerszy kontener niż reszta strony —
-   tablety mają robić wrażenie. */
 .container-hero {
   max-width: 1880px;
   margin: 0 auto;
@@ -219,8 +193,6 @@ code { overflow-wrap: break-word; }
 }
 .device-label.is-magenta { color: var(--magenta); }
 
-/* ── Przyciski i odznaki sklepów ───────────────────────────────────────── */
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -246,10 +218,8 @@ code { overflow-wrap: break-word; }
 }
 .btn-ghost:hover { border-color: var(--accent); color: var(--text); }
 
-/* Element jeszcze nieaktywny (np. pobieranie przed publikacją wydania). */
 .btn.is-soon { opacity: 0.7; pointer-events: none; }
 
-/* Odznaki sklepów: ciemne pigułki z glifem i dwiema liniami tekstu. */
 .store-badge {
   display: inline-flex;
   align-items: center;
@@ -268,8 +238,6 @@ code { overflow-wrap: break-word; }
 .store-badge.is-soon { opacity: 0.7; pointer-events: none; filter: saturate(0.6); }
 
 .store-note { font-size: 13px; color: var(--muted); margin-top: 10px; }
-
-/* ── Sekcje ────────────────────────────────────────────────────────────── */
 
 section { padding: 64px 0; }
 
@@ -293,17 +261,12 @@ h2 {
 
 .section-head p { color: var(--text-dim); margin: 0; }
 
-/* ── Karty features ────────────────────────────────────────────────────── */
-
-/* min(…, 100%) w każdej siatce: bez tego auto-fit wymusza tor szerszy niż kontener
-   i strona dostaje poziomy pasek przewijania na wąskim telefonie (karty produktów
-   robiły to przy 320px). Powyżej progu układ jest identyczny co do piksela. */
 .grid {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
 }
-/* Sześć kart features: na szerokim ekranie 3+3 zamiast 4+2. */
+
 @media (min-width: 1100px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
 }
@@ -326,8 +289,6 @@ h2 {
 }
 .card h3 svg { flex: none; color: var(--accent); }
 .card p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
-
-/* ── "Jak to działa" — trzy kroki ──────────────────────────────────────── */
 
 .steps {
   display: grid;
@@ -357,8 +318,6 @@ h2 {
 .step h3 { margin: 0 0 8px; font-size: 1.08rem; }
 .step p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
 
-/* ── Statystyki (liczby zmierzone) ─────────────────────────────────────── */
-
 .stats {
   display: grid;
   gap: 18px;
@@ -382,8 +341,6 @@ h2 {
 }
 .stat .num sub, .stat .num small { font-size: 0.45em; color: var(--text-dim); font-weight: 500; }
 .stat .desc { color: var(--text-dim); font-size: 14.5px; margin-top: 6px; }
-
-/* ── Sekcja produktów (PFD / MFD) ──────────────────────────────────────── */
 
 .products {
   display: grid;
@@ -416,16 +373,11 @@ h2 {
 .product h3 { margin: 0; font-size: 1.35rem; letter-spacing: -0.015em; }
 .product p { margin: 0; color: var(--text-dim); font-size: 15.5px; flex-grow: 1; }
 .badges { display: flex; flex-wrap: wrap; gap: 10px; }
-/* Druga listwa odznak (App Store pod Google Play na stronie setup): cztery odznaki
-   w jednym rzędzie nie mieszczą się w 820 px kolumny instrukcji i zawijają 3+1,
-   co rozrywa grupowanie po sklepach — stąd dwa rzędy z odstępem równym gapowi. */
+
 .badges + .badges { margin-top: 10px; }
 .product img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #000; }
 .product .product-icon { width: 64px; height: 64px; border: 0; background: none; }
 
-/* ── Callouty ──────────────────────────────────────────────────────────── */
-
-/* Wzór .startup-fix z aplikacji: cienka ramka, lewa krawędź akcentem, tło ledwo podbite. */
 .callout {
   border: 1px solid var(--border);
   border-left: 3px solid var(--link);
@@ -443,10 +395,6 @@ h2 {
 }
 .callout b, .callout strong { color: var(--text); }
 
-/* ── Strona setup: kroki-numerowane sekcje ─────────────────────────────── */
-
-/* Prosta proza instrukcji zostaje w szerokości czytelnej dla oka,
-   niezależnie od szerokości kontenera. */
 .guide { max-width: 820px; }
 
 .guide-step { padding: 34px 0; border-top: 1px solid var(--border); }
@@ -471,7 +419,6 @@ h2 {
 .guide-step b, .guide-step strong { color: var(--text); }
 .guide-step img { max-width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border); }
 
-/* Checklista jak w aplikacji (ekran "Required on your PC"). */
 .checklist { list-style: none; padding: 0; margin: 16px 0; }
 .checklist li {
   display: flex;
@@ -489,10 +436,8 @@ h2 {
   width: 9px; height: 9px;
   border-radius: 50%;
   background: var(--ok);
-  box-shadow: 0 0 8px rgba(110, 227, 138, 0.55); /* poświata jak .startup-dot w aplikacji */
+  box-shadow: 0 0 8px rgba(110, 227, 138, 0.55);
 }
-
-/* ── Akordeon (FAQ / troubleshooting) ──────────────────────────────────── */
 
 details {
   border: 1px solid var(--border);
@@ -525,8 +470,6 @@ details .body { padding: 0 20px 18px 20px; color: var(--text-dim); font-size: 15
 details .body > :first-child { margin-top: 0; }
 details .body > :last-child { margin-bottom: 0; }
 
-/* ── Stopka ────────────────────────────────────────────────────────────── */
-
 footer {
   border-top: 1px solid var(--border);
   padding: 36px 0 48px;
@@ -535,8 +478,6 @@ footer {
 }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 18px 40px; justify-content: space-between; }
 .footer-inner a { color: var(--text-dim); }
-
-/* ── Ramka urządzenia (zrzut z aplikacji w "tablecie") ─────────────────── */
 
 .device {
   max-width: 920px;
@@ -570,13 +511,9 @@ footer {
   margin: 16px 0 0;
 }
 
-/* ── Nagłówek karty produktu ───────────────────────────────────────────── */
-
 .product-head { display: flex; align-items: center; gap: 16px; }
 .product-head h3 { margin: 0; }
 .product-icon { flex: none; border-radius: 16px; }
-
-/* ── Zajawka instrukcji ────────────────────────────────────────────────── */
 
 .setup-teaser {
   display: flex;
@@ -594,11 +531,6 @@ footer {
 .setup-teaser .teaser-lead { color: var(--text-dim); max-width: 52ch; margin: 0; }
 .setup-teaser .btn { flex: none; }
 
-/* ── Strona /support: kanały kontaktu ──────────────────────────────────── */
-
-/* Dwie karty obok siebie w 820-pikselowej kolumnie instrukcji, jedna pod drugą
-   poniżej ~640px. Nie .grid: tamta siatka od 1100px wymusza trzy równe kolumny
-   (sześć kart features), więc przy dwóch kartach zostawiałaby pustą trzecią. */
 .channels {
   display: grid;
   gap: 18px;
@@ -606,24 +538,18 @@ footer {
   margin: 8px 0 34px;
 }
 
-/* Przycisk zawsze na dole karty — inaczej dłuższy opis Discorda przesuwa jego
-   przycisk niżej niż przycisk e-maila i para przestaje wyglądać jak wybór. */
 .channels .card { display: flex; flex-direction: column; }
 .channels .card h3 { font-size: 1.25rem; }
 .channels .card p { margin: 0 0 18px; }
 .channels .card .btn { margin-top: auto; align-self: flex-start; }
 .channels .card .fineprint { margin: 12px 0 0; }
 
-/* Karta preferowana dostaje tę samą poświatę co zajawka instrukcji — jedyny
-   sygnał "tędy", poza żółtym przyciskiem. */
 .channels .card.is-preferred {
   border-color: var(--border-bright);
   background:
     radial-gradient(600px 200px at 0% 0%, rgba(224, 200, 143, 0.07), transparent 70%),
     var(--bg-card);
 }
-
-/* ── Stopka: kontakt i znaki towarowe ──────────────────────────────────── */
 
 .footer-inner .trademark { max-width: 52ch; }
 
@@ -638,8 +564,6 @@ footer {
   margin-bottom: 4px;
 }
 
-/* ── Drobiazgi ─────────────────────────────────────────────────────────── */
-
 .center { text-align: center; }
 .mt-0 { margin-top: 0; }
 
@@ -648,32 +572,20 @@ footer {
   section { padding: 48px 0; }
 }
 
-/* ── Nawigacja na wąskich ekranach ─────────────────────────────────────── */
-
-/* Próg 760px jest wyliczony, nie okrągły: tyle potrzebuje najszerszy pasek strony
-   (setup — marka 171 + odstęp 28 + odnośniki 499 + marginesy kontenera). Poniżej
-   desktopowy układ ściskał odnośniki tak, że CTA łamało się na dwie linie i wystawało
-   poza kontener, a niżej — do 640px — odnośniki sekcji były po prostu chowane
-   (display: none) i na telefonie nie było jak dojść do FAQ inaczej niż scrollem przez
-   całą stronę. Zamiast obu tych zachowań: pasek przewijany w poziomie. */
 @media (max-width: 760px) {
   .nav-inner { gap: 14px; }
   .nav-links {
     gap: 16px;
     font-size: 14px;
-    min-width: 0;              /* bez tego flex nie pozwoli paskowi zwęzić się pod overflow */
+    min-width: 0;
     overflow-x: auto;
     overscroll-behavior-x: contain;
-    scrollbar-width: none;     /* pasek przewijania psułby 62-pikselowy nagłówek */
-    padding: 10px 0;           /* miejsce na obwódkę :focus-visible, którą overflow by ucięło */
+    scrollbar-width: none;
+    padding: 10px 0;
   }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { white-space: nowrap; }
 
-  /* CTA nie może odjechać razem z resztą — na wąskim ekranie pasek pokazuje ledwie
-     dwa odnośniki naraz, a to jest ten jeden, który musi być pod kciukiem zawsze.
-     Zostaje przyklejony do prawej krawędzi; tło musi być kryjące, bo linki
-     przewijają się pod spodem. */
   .nav-links a.nav-cta {
     position: sticky;
     right: 0;
@@ -681,10 +593,6 @@ footer {
   }
 }
 
-/* Na telefonie w pionie sam napis "FlightSimGeeks" bierze 171 z 272 dostępnych pikseli
-   i najdłuższe CTA (setup: "Troubleshooting", 130px) przestaje się mieścić. Próg 430px
-   też jest z sumy: marka + odstęp + CTA + marginesy kontenera. Poniżej zostaje sam
-   znak — dalej prowadzi na stronę główną, a markę niesie nagłówek strony i stopka. */
 @media (max-width: 430px) {
   .brand span { display: none; }
 }

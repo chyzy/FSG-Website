@@ -10,9 +10,7 @@
   <meta property="og:title" content="Set up FSG SimBridge — setup guide">
   <meta property="og:description" content="Set up FSG SimBridge on your PC, connect the FSG G1000 app on your tablet and make your first flight — about two minutes.">
   <meta property="og:type" content="website">
-  <!-- og/canonical muszą być absolutne (to metadane, nie zasoby) — stąd pełna domena.
-       ⚠ Ta ścieżka jest ZASZYTA w binarce aplikacji (client/src/config/product.ts) —
-       musi żyć tak długo, jak aplikacja stoi w sklepie. -->
+
   <meta property="og:url" content="https://flightsimgeeks.com/setup/">
   <meta property="og:image" content="https://flightsimgeeks.com/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -56,7 +54,7 @@
 
       <p class="fineprint">What you need before we start:</p>
       <ul class="checklist">
-        <li><span class="dot"></span><span>A Windows 10/11 PC with <b>Microsoft Flight Simulator 2024</b> installed — you can leave the simulator closed for now</span></li>
+        <li><span class="dot"></span><span>A Windows 10/11 PC with <b>Microsoft Flight Simulator 2024 or 2020</b> installed — Steam or Microsoft Store, either works, also both sims side by side. You can leave the simulator closed for now</span></li>
         <li><span class="dot"></span><span>An <b>Android</b> tablet or phone, or an <b>iPad</b>, with the <b>FSG G1000 PFD</b> or <b>MFD</b> app</span></li>
         <li><span class="dot"></span><span>Both on the <b>same network</b> — ideally the PC on a cable</span></li>
       </ul>
@@ -66,7 +64,6 @@
   <section class="mt-0">
     <div class="container guide">
 
-      <!-- ── Krok 1 ─────────────────────────────────────────────────── -->
       <div class="guide-step" id="bridge">
         <h2><span class="no">01</span>Install FSG SimBridge on your PC</h2>
         <p>
@@ -75,21 +72,15 @@
           Download it on the PC that runs the simulator and run the installer — there is
           nothing to configure.
         </p>
-        <!-- NAD przyciskiem, nie pod nim: to jedyna rada z tego kroku, którą trzeba wykonać
-             PRZED kliknięciem. Pod przyciskiem stała za dwiema innymi ramkami i czytał ją
-             dopiero ten, kto już zainstalował — czyli dokładnie za późno. -->
+
         <div class="callout">
-          <b>Close Microsoft Flight Simulator first.</b> The bridge installs a module that the
-          simulator only picks up while starting. If it was already running, nothing is
-          broken — restart it once afterwards.
+          <b>Using MSFS 2024? Close it first.</b> On Microsoft Flight Simulator 2024 the bridge
+          installs a small avionics module that the simulator only picks up while starting. If it
+          was already running, nothing is broken — restart it once afterwards. MSFS 2020 uses no
+          module, so there is nothing to close or restart.
         </div>
         <p>
-          <!-- Adres STAŁY: /releases/latest/download/ zawsze wskazuje najnowsze wydanie,
-               więc nie trzeba go ruszać przy kolejnych wersjach. Zmierzone 2026-08-17 pod
-               POPRZEDNIĄ nazwą pliku (FsgSimBridge-win-Setup.exe): HTTP 206,
-               bytes 0-0/126606223 po przekierowaniu na serwery załączników. Nazwę zmieniono
-               2026-08-18 — pierwsze wydanie pod nową nazwą trzeba przemierzyć ponownie.
-               Nazwa pliku MUSI zgadzać się z tym, co produkuje vpk pack (build-release.ps1). -->
+
           <a class="btn btn-primary"
              href="https://github.com/chyzy/FSG-SimBridge/releases/latest/download/FSG-SimBridge-Setup.exe">
             Download FSG SimBridge
@@ -99,9 +90,7 @@
           Free · Windows 10/11 · about 120 MB ·
           <a href="https://github.com/chyzy/FSG-SimBridge/releases">all versions</a>
         </p>
-        <!-- DO USUNIĘCIA, gdy paczka będzie podpisana (Azure Trusted Signing). Dopóki nie jest,
-             SmartScreen blokuje uruchomienie i bez tego akapitu ludzie uznają instalator za
-             złośliwy i zrezygnują — patrz checklista w README. -->
+
         <div class="callout">
           <b>Windows will warn you about an unknown publisher.</b> We are having the installer
           certified; until that is done, choose <b>More info</b> and then <b>Run anyway</b>.
@@ -113,7 +102,6 @@
         </div>
       </div>
 
-      <!-- ── Krok 2 ─────────────────────────────────────────────────── -->
       <div class="guide-step" id="app">
         <h2><span class="no">02</span>Install the app on your tablet</h2>
         <p>
@@ -123,7 +111,7 @@
           bridge.
         </p>
         <div class="badges">
-          <!-- TODO przed startem: linki po publikacji w Play. -->
+
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.flightsimgeeks.g1000.pfd">
             <img src="../assets/img/icon-pfd.svg" alt="" width="24" height="24">
             <span><span class="small">Google Play</span><span class="big">FSG G1000 PFD</span></span>
@@ -134,8 +122,7 @@
           </a>
         </div>
         <div class="badges">
-          <!-- TODO przed startem: App Store nie ma adresu po bundle id — w miejsce
-               APPSTORE-ID-{PFD,MFD} wstawić numeryczne ID z App Store Connect. -->
+
           <a class="store-badge" href="https://apps.apple.com/app/idAPPSTORE-ID-PFD">
             <img src="../assets/img/icon-pfd.svg" alt="" width="24" height="24">
             <span><span class="small">App Store</span><span class="big">FSG G1000 PFD</span></span>
@@ -151,7 +138,6 @@
         </p>
       </div>
 
-      <!-- ── Krok 3 ─────────────────────────────────────────────────── -->
       <div class="guide-step" id="connect">
         <h2><span class="no">03</span>Connect the app to your PC</h2>
         <p>
@@ -198,14 +184,13 @@
         </p>
       </div>
 
-      <!-- ── Krok 4 ─────────────────────────────────────────────────── -->
       <div class="guide-step" id="first-flight">
         <h2><span class="no">04</span>First flight — show it where the PFD is</h2>
         <p>
-          Start Microsoft Flight Simulator 2024 and load a flight in a G1000 aircraft — the
+          Start Microsoft Flight Simulator and load a flight in a G1000 aircraft — the
           Cessna 172 is perfect. The app shows a live checklist of what it is waiting for
-          (bridge, simulator, aircraft, the FSG-Bridge package), so you always know
-          whether it's waiting on you.
+          (bridge, simulator, aircraft — and on MSFS 2024 the FSG-Bridge package), so you
+          always know whether it's waiting on you.
         </p>
         <p>
           The first time you fly a given aircraft, the app asks you to
@@ -238,9 +223,6 @@
         </div>
       </div>
 
-      <!-- ── Koniec instalacji ──────────────────────────────────────── -->
-      <!-- Wyraźna meta strony: tu kończy się czytanie przy standardowej
-           instalacji. Wszystko niżej to materiał referencyjny. -->
       <div class="guide-step" id="done">
         <div class="setup-teaser">
           <div>
@@ -254,11 +236,6 @@
         </div>
       </div>
 
-      <!-- ── Most na PC ─────────────────────────────────────────────── -->
-      <!-- Sekcja referencyjna: co użytkownik zastaje na komputerze PO instalacji.
-           Most nie ma okna ani konsoli, więc bez tego opisu nie ma jak stwierdzić,
-           że cokolwiek działa. Bez numeru, jak #network i #troubleshooting — nagłówek
-           strony obiecuje CZTERY kroki. -->
       <div class="guide-step" id="on-your-pc">
         <h2>The bridge on your PC</h2>
         <p>
@@ -301,20 +278,25 @@
           the icon menu asks the question right now, if you are curious.
         </p>
 
-        <h3>The avionics module</h3>
+        <h3>The avionics module (MSFS 2024 only)</h3>
         <p>
-          During the install the bridge drops a small <b>FSG-Bridge package</b> into the
-          simulator's <b>Community folder</b> — that is what lets the app turn the avionics
-          knobs (FMS, map range, NAV/COM tuning, volumes). You never manage it: if the simulator
-          was not installed yet, or a repair wipes the Community folder, the bridge puts the
-          package back by itself.
+          On Microsoft Flight Simulator 2024 the bridge drops a small <b>FSG-Bridge package</b>
+          into the simulator's <b>Community folder</b> — that is what lets the app turn the
+          avionics knobs (FMS, map range, NAV/COM tuning, volumes). You never manage it: if the
+          simulator was not installed yet, or a repair wipes the Community folder, the bridge
+          puts the package back by itself.
+        </p>
+        <p>
+          Microsoft Flight Simulator 2020 works <b>without any module</b> — its cockpit already
+          exposes everything the knobs need, so on 2020 the bridge deliberately installs nothing
+          into the Community folder. No FSG-Bridge folder there is not a fault.
         </p>
 
         <h3>Removing it</h3>
         <p>
           Open <b>Settings → Apps</b>, find <b>FSG SimBridge</b> and remove it the normal
-          Windows way. It takes the FSG-Bridge package out of the Community folder on the way
-          out, so the simulator is left exactly as it was.
+          Windows way. It takes the FSG-Bridge package out of the MSFS 2024 Community folder on
+          the way out, so the simulator is left exactly as it was.
         </p>
         <p class="fineprint">
           Your saved PFD positions stay on the PC. Install the bridge again later and every
@@ -322,8 +304,6 @@
         </p>
       </div>
 
-      <!-- ── Sieć ───────────────────────────────────────────────────── -->
-      <!-- Sekcje referencyjne bez numerów — nagłówek strony obiecuje CZTERY kroki. -->
       <div class="guide-step" id="network">
         <h2>Make your network work for you</h2>
         <p>
@@ -349,7 +329,6 @@
         </p>
       </div>
 
-      <!-- ── Troubleshooting ────────────────────────────────────────── -->
       <div class="guide-step" id="troubleshooting">
         <h2>Troubleshooting</h2>
 
@@ -424,28 +403,26 @@
           <div class="body">
             <p>
               The bridge is fine — it just can't see the simulator. Start Microsoft Flight
-              Simulator 2024 and load into a flight; the app connects as soon as the
-              simulator answers.
+              Simulator (2024 or 2020, whichever you fly) and load into a flight; the app
+              connects as soon as the simulator answers.
             </p>
           </div>
         </details>
 
-        <!-- Zaraz po „Waiting for the simulator", bo dokładnie tam utknie ktoś z samym
-             2020 — apka mówi mu to sama (ekran „Microsoft Flight Simulator 2024 required"),
-             a ta pozycja jest miejscem, gdzie szuka potwierdzenia i wyjaśnienia. -->
         <details>
-          <summary>I have Microsoft Flight Simulator 2020 — the app says it needs MSFS&nbsp;2024</summary>
+          <summary>I have Microsoft Flight Simulator 2020 — does it work? The app asked for MSFS&nbsp;2024</summary>
           <div class="body">
             <p>
-              That message is correct: FSG&nbsp;G1000 works with <b>Microsoft Flight
-              Simulator 2024 only</b>. The avionics module the bridge relies on is built
-              against the MSFS&nbsp;2024 SDK, so with MSFS&nbsp;2020 the panel cannot start —
-              there is no setting to change that.
+              It works: FSG&nbsp;G1000 supports <b>both Microsoft Flight Simulator 2020 and
+              2024</b>, from Steam or the Microsoft Store alike. On MSFS&nbsp;2020 everything —
+              buttons and knobs — runs through the simulator's own cockpit controls, so the
+              bridge does not even need its avionics module there.
             </p>
             <p>
-              Both simulators can live on one PC. Install Microsoft Flight Simulator 2024
-              and run it once; the bridge notices it by itself, sets up the avionics module
-              and the app connects on its own — nothing to reinstall.
+              If the app still says it <i>needs MSFS&nbsp;2024</i>, you are looking at an older
+              version: that message comes from app versions before 0.9.4 and older bridges.
+              Update the app from the store and let the bridge update itself (or grab the
+              latest installer above) — nothing else to change.
             </p>
           </div>
         </details>
@@ -466,6 +443,10 @@
           <summary>“FSG-Bridge package in Community folder” says “module not responding yet”</summary>
           <div class="body">
             <p>
+              This concerns <b>MSFS 2024 only</b> — on MSFS 2020 there is no module and the
+              app does not wait for one.
+            </p>
+            <p>
               The simulator loads packages only at startup. If the bridge was installed
               while the simulator was running, restart it once.
             </p>
@@ -483,10 +464,15 @@
           <summary>Everything works, except the FMS knob, map range or volumes</summary>
           <div class="body">
             <p>
-              The buttons travel one path, the avionics knobs another — the knobs need the
-              <b>FSG-Bridge package</b> in the simulator's Community folder. See the point
-              above: restart the simulator, and give the bridge a minute to put the package
-              back if it went missing.
+              The buttons travel one path, the avionics knobs another. On <b>MSFS 2024</b> the
+              knobs need the <b>FSG-Bridge package</b> in the simulator's Community folder — see
+              the point above: restart the simulator, and give the bridge a minute to put the
+              package back if it went missing.
+            </p>
+            <p>
+              On <b>MSFS 2020</b> no package is involved — the knobs use the simulator's own
+              cockpit controls. Make sure the bridge and the app are up to date (0.9.4 or
+              newer), and that the aircraft flies the stock G1000.
             </p>
           </div>
         </details>
@@ -564,10 +550,7 @@
         <div>
           <h2 class="mt-0">Still stuck?</h2>
           <p class="teaser-lead">
-            <!-- Kanały wsparcia i "co napisać" trzyma jedna strona (/support/) — tutaj
-                 zostaje tylko odesłanie, żeby przy zmianie kanału nie trzeba było
-                 poprawiać instrukcji. Kolejność nieprzypadkowa: Discord pierwszy,
-                 bo tam odpowiedź przychodzi najszybciej. -->
+
             Ask on our <a href="https://discord.gg/sT5G3rSq7q" rel="noopener">Discord</a> —
             that's where answers come fastest — or write to
             <a href="mailto:support@flightsimgeeks.com">support@flightsimgeeks.com</a>.

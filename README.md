@@ -48,12 +48,17 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   `og:image` and `canonical` in `<head>` must be absolute.
 - **Terminology follows the app's UI**: "FSG SimBridge" (the program),
   `fsg-simbridge` (the process), "FSG-Bridge package" in the "Community folder"
-  (the module), "FSG G1000 PFD" / "FSG G1000 MFD" (the apps), always the full
-  "Microsoft Flight Simulator 2024".
+  (the module), "FSG G1000 PFD" / "FSG G1000 MFD" (the apps). Simulators are the full
+  "Microsoft Flight Simulator 2024" / "Microsoft Flight Simulator 2020" on first mention,
+  "MSFS 2024" / "MSFS 2020" after that. **Both simulators are supported (since 2026-09-02)**
+  — never write "2024 only". The one real difference to keep straight: the FSG-Bridge
+  package goes into the Community folder of MSFS 2024 only; on MSFS 2020 there is no module
+  and the knobs run on the simulator's own cockpit controls (FSG-G1000 repo,
+  `docs/installer.md` §7a–7b).
 - **Platforms: Android 7 or later, iOS is iPad only** (`minSdkVersion = 24`;
   `TARGETED_DEVICE_FAMILY = 2` with landscape-only orientations and `UIRequiresFullScreen`) —
-  **never write that iPhone is supported.** Source: `docs/aplikacje-sklepowe.md`
-  §"Decyzje produktowe iOS" in the FSG-G1000 repo. The Android build carries no screen-size
+  **never write that iPhone is supported.** Source: `docs/store-apps.md`
+  ("iOS product decisions") in the FSG-G1000 repo. The Android build carries no screen-size
   restriction, so it installs on phones and the checklist in `setup/index.html` still says
   "tablet or phone" — but there is no phone layout (both attempts were rejected on
   2026-08-20), so **do not promote phones anywhere else on the site** until that is decided.
