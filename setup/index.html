@@ -505,6 +505,30 @@
         </details>
 
         <details>
+          <summary>The simulator drops to exactly 30 fps when the panel pops out</summary>
+          <div class="body">
+            <p>
+              That is V-Sync, not a slow PC. With V-Sync switched on in the simulator, a
+              popped-out panel window makes Microsoft Flight Simulator lock to half of your
+              monitor's refresh rate: 30&nbsp;fps on a 60&nbsp;Hz screen, even when the PC
+              could do far more. The bridge has to pop the panel out to stream it, so this
+              shows up the moment the panel window is created.
+            </p>
+            <p>
+              Turn V-Sync <b>off</b> in the simulator (<b>Options → General Options →
+              Graphics</b>) and the frame rate comes straight back. If you like a frame cap
+              for smoothness, set it in the graphics driver instead: <b>Max Frame Rate</b> in
+              the NVIDIA Control Panel, the frame rate limiter in AMD Adrenalin, or a tool
+              like RTSS. Those cap without halving.
+            </p>
+            <p class="fineprint">
+              Confirmed on Microsoft Flight Simulator 2020. If you see it on 2024, tell us.
+              We have not seen it there yet.
+            </p>
+          </div>
+        </details>
+
+        <details>
           <summary>The panel pops out in the wrong place, or a wrong window opens</summary>
           <div class="body">
             <p>
