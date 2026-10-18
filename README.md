@@ -81,6 +81,14 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   or command-line switches on the page — those belong in the FSG-G1000 docs. The
   four numbered steps carry only what the reader has to *do*; everything else is
   reference material below the "You're good to go" card.
+- **Store badge links carry tracking parameters — keep them when editing.** Google Play
+  links end with `&referrer=utm_source%3Dflightsimgeeks%26utm_medium%3Dwebsite%26utm_campaign%3Dsite-{home,setup}`
+  (Play Console → acquisition reports); App Store links use Apple's campaign form
+  `apps.apple.com/app/apple-store/id…?pt=122327797&ct=site-{home,setup}&mt=8`
+  (App Store Connect → Analytics → Campaigns). `ct` / `utm_campaign` name the page; the
+  app is told apart by its own ID. Every page except the `/fsg-bridge/setup/` stub also
+  carries the GA4 tag `G-KZ9D2EBDB4`, where badge clicks arrive as `play_store_click` /
+  `app_store_click` (custom events built on the enhanced-measurement `click`).
 
 ## App screenshots — how to refresh them
 
