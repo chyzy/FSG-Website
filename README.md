@@ -90,13 +90,19 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   app is told apart by its own ID. Every page except the `/fsg-bridge/setup/` stub also
   loads the GA4 tag `G-KZ9D2EBDB4` (through `assets/consent.js`, see the next rule), where
   badge clicks arrive as `play_store_click` / `app_store_click` (custom events built on the
-  enhanced-measurement `click`). Only visitors who accepted cookies are counted.
-- **No Google tag without consent (since 2026-10-19).** GA4 sets cookies, and the operator is in
-  the EU — art. 399 of the Polish *Prawo komunikacji elektronicznej* plus the GDPR require a yes
-  *before* anything is stored. So no page carries the `gtag.js` snippet any more: each one
-  loads `assets/consent.js` with `defer`, which runs Consent Mode v2 in its **basic** form —
-  defaults `denied`, and the Google script is not even requested until the visitor clicks
-  *Accept*. The choice sits in `localStorage` (`fsg-consent`), and the **Cookie settings**
+  enhanced-measurement `click`). European visitors are counted only if they accepted cookies.
+- **No Google tag without consent in Europe (since 2026-10-19).** GA4 sets cookies, and the
+  operator is in the EU — art. 399 of the Polish *Prawo komunikacji elektronicznej* plus the GDPR
+  require a yes *before* anything is stored. So no page carries the `gtag.js` snippet any more:
+  each one loads `assets/consent.js` with `defer`, which runs Consent Mode v2 in its **basic**
+  form — defaults `denied`, and the Google script is not even requested until the visitor clicks
+  *Accept*. **Since 2026-10-20 that applies only in Europe:** `consent.js` reads the browser's
+  time zone (the site is static, there is no server to geolocate) and asks first for `Europe/*`,
+  the EEA zones listed in `ASK_FIRST_ZONES` (Canaries, Azores, Cyprus, overseas regions…) and any
+  unknown or neutral zone (`UTC`, `Etc/*`). Everywhere else the tag loads on the first page view
+  with `analytics_storage`, `ad_storage` and `ad_user_data` granted but `ad_personalization`
+  denied — no remarketing without an explicit *Accept*; the legal basis there is legitimate
+  interest, stated in section 06. The choice sits in `localStorage` (`fsg-consent`), and the **Cookie settings**
   button in every footer (`data-consent-settings`) brings the banner back; *Reject* deletes the
   `_ga` cookies. `404.html` loads the script with `data-banner="off"`: it honours a choice
   made elsewhere but never asks. A new page needs both the script tag and the footer button.

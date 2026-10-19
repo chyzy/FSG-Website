@@ -1,9 +1,14 @@
 // Cookie consent for flightsimgeeks.com: Google Consent Mode v2, basic implementation.
 //
-// Nothing from Google loads until the visitor clicks Accept — no request, no cookie. The
-// choice is remembered in localStorage ("granted" / "denied"), and every footer has a
+// In Europe (the EEA, the UK and Switzerland) nothing from Google loads until the visitor
+// clicks Accept — no request, no cookie. Everywhere else Google Analytics runs from the first
+// page view, measurement only: ad_personalization (remarketing) stays denied until an
+// explicit Accept. The site is static, so "in Europe" is read from the browser's time zone;
+// an unknown or neutral zone (UTC, Etc/*) counts as Europe, i.e. ask first.
+//
+// The choice is remembered in localStorage ("granted" / "denied"), and every footer has a
 // "Cookie settings" button that brings the banner back, so consent can be withdrawn as
-// easily as it was given. Withdrawing deletes the Google Analytics cookies.
+// easily as it was given — outside Europe too. Withdrawing deletes the Google Analytics cookies.
 //
 // Every page loads this file with `defer` in place of the Google tag. 404.html loads it with
 // data-banner="off": it only honours a choice made elsewhere and never asks.
@@ -16,6 +21,24 @@
   var GA_ID = 'G-KZ9D2EBDB4';
   var STORAGE_KEY = 'fsg-consent';
 
+  // Time zones outside Europe/* that still belong to the EEA: Atlantic islands, Cyprus,
+  // Svalbard, Ceuta and the EU's overseas regions.
+  var ASK_FIRST_ZONES = [
+    'Africa/Ceuta', 'America/Cayenne', 'America/Guadeloupe', 'America/Marigot',
+    'America/Martinique', 'Arctic/Longyearbyen', 'Asia/Famagusta', 'Asia/Nicosia',
+    'Atlantic/Azores', 'Atlantic/Canary', 'Atlantic/Faeroe', 'Atlantic/Faroe',
+    'Atlantic/Madeira', 'Atlantic/Reykjavik', 'Indian/Mayotte', 'Indian/Reunion'
+  ];
+
+  function mustAskFirst() {
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* ask */ }
+    return !zone || /^(Europe|Etc)\//.test(zone) || zone === 'UTC' || zone === 'GMT' ||
+      ASK_FIRST_ZONES.indexOf(zone) !== -1;
+  }
+
+  var askFirst = mustAskFirst();
+
   var script = document.currentScript;
   var bannerEnabled = !(script && script.dataset.banner === 'off');
   var privacyUrl = new URL('../privacy/#website', script ? script.src : location.href).href;
@@ -23,11 +46,11 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 
-  function signals(state) {
+  function signals(state, personalization) {
     return {
       ad_storage: state,
       ad_user_data: state,
-      ad_personalization: state,
+      ad_personalization: personalization || state,
       analytics_storage: state
     };
   }
@@ -81,8 +104,15 @@
     }
   }
 
+  // Outside Europe, with no answer given yet: measure, but no remarketing without an Accept.
+  function applyDefaultOutsideEurope() {
+    gtag('consent', 'update', signals('granted', 'denied'));
+    loadTag();
+  }
+
   var stored = readChoice();
   if (stored === 'granted') apply('granted');
+  else if (!stored && !askFirst) applyDefaultOutsideEurope();
 
   if (!bannerEnabled) return;
 
@@ -97,7 +127,8 @@
     banner.innerHTML =
       '<p class="consent-text">' +
         '<b>Can we get a cookie, please?</b> We\'d like to use Google Analytics to see how visitors ' +
-        'find and use this site and to measure our ads. Nothing is loaded unless you accept. ' +
+        'find and use this site and to measure our ads. ' +
+        (askFirst ? 'Nothing is loaded unless you accept. ' : '') +
         'Thank you! ' +
         '<a href="' + privacyUrl + '">Privacy policy</a>' +
         '<span class="consent-current"></span>' +
@@ -122,8 +153,13 @@
   function showBanner(fromSettings) {
     if (!banner) buildBanner();
     var current = readChoice();
-    banner.querySelector('.consent-current').textContent =
-      fromSettings && current ? 'Your current choice: ' + (current === 'granted' ? 'accepted.' : 'rejected.') : '';
+    var currentText = '';
+    if (fromSettings && current) {
+      currentText = 'Your current choice: ' + (current === 'granted' ? 'accepted.' : 'rejected.');
+    } else if (fromSettings && !askFirst) {
+      currentText = 'Where you are, analytics is on by default (no remarketing). Reject turns it off.';
+    }
+    banner.querySelector('.consent-current').textContent = currentText;
     banner.hidden = false;
     if (fromSettings) banner.querySelector('[data-choice]').focus();
   }
@@ -132,5 +168,5 @@
     button.addEventListener('click', function () { showBanner(true); });
   });
 
-  if (stored !== 'granted' && stored !== 'denied') showBanner(false);
+  if (askFirst && stored !== 'granted' && stored !== 'denied') showBanner(false);
 })();
