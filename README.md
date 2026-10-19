@@ -12,10 +12,11 @@ whatever sits in the repository root is served as-is.
 | `support/index.html` | support page: the two channels (Discord first, `support@flightsimgeeks.com` second), what to try first, what to put in the message, purchases/refunds |
 | `fsg-bridge/setup/index.html` | redirect stub pointing at `/setup/` — the old address is baked into pre-release builds of the app; delete once those are gone |
 | `assets/site.css` | the only stylesheet; palette taken from the app (logo yellow `#ffc61a`, background `#0b0d10`, MFD magenta `#f531e0`) |
+| `assets/consent.js` | the cookie banner and the **only** place the Google tag is loaded from (Consent Mode v2) — see the rule below |
 | `assets/img/icon-*.svg` | app icons converted 1:1 from the Android vector drawables (`client/android/app/src/*/res/drawable/`) — fix them there, fix them here |
 | `assets/img/app-*.webp` | screenshots of the **live** app (see below: how to refresh them) |
 | `assets/img/og-image.jpg` | 1200×630 crop for link cards (Discord, forums) |
-| `404.html` | inline styles — Pages serves it from any path, so it must not depend on relative paths |
+| `404.html` | inline styles — Pages serves it from any path, so it must not depend on relative paths (the one script it loads uses the root path `/assets/consent.js`) |
 | `robots.txt` | everything crawlable; points at the sitemap. Deliberately does **not** `Disallow` the 404 page or the redirect stub — a crawler honours `noindex` only on pages it is allowed to fetch |
 | `sitemap.xml` | the four indexable pages. Bump `lastmod` when a page's content changes |
 
@@ -87,8 +88,20 @@ The old address `https://chyzy.github.io/FSG-Website/` still works and redirects
   `apps.apple.com/app/apple-store/id…?pt=122327797&ct=site-{home,setup}&mt=8`
   (App Store Connect → Analytics → Campaigns). `ct` / `utm_campaign` name the page; the
   app is told apart by its own ID. Every page except the `/fsg-bridge/setup/` stub also
-  carries the GA4 tag `G-KZ9D2EBDB4`, where badge clicks arrive as `play_store_click` /
-  `app_store_click` (custom events built on the enhanced-measurement `click`).
+  loads the GA4 tag `G-KZ9D2EBDB4` (through `assets/consent.js`, see the next rule), where
+  badge clicks arrive as `play_store_click` / `app_store_click` (custom events built on the
+  enhanced-measurement `click`). Only visitors who accepted cookies are counted.
+- **No Google tag without consent (since 2026-10-19).** GA4 sets cookies, and the operator is in
+  the EU — art. 399 of the Polish *Prawo komunikacji elektronicznej* plus the GDPR require a yes
+  *before* anything is stored. So no page carries the `gtag.js` snippet any more: each one
+  loads `assets/consent.js` with `defer`, which runs Consent Mode v2 in its **basic** form —
+  defaults `denied`, and the Google script is not even requested until the visitor clicks
+  *Accept*. The choice sits in `localStorage` (`fsg-consent`), and the **Cookie settings**
+  button in every footer (`data-consent-settings`) brings the banner back; *Reject* deletes the
+  `_ga` cookies. `404.html` loads the script with `data-banner="off"`: it honours a choice
+  made elsewhere but never asks. A new page needs both the script tag and the footer button.
+  Anything that changes what is collected — a new tag, Google Ads conversion code, a switch
+  to *advanced* consent mode — has to update section 06 of the privacy policy in the same commit.
 
 ## App screenshots — how to refresh them
 
